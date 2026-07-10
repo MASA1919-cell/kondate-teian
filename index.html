@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>今週の献立 - 1週間まとめて提案</title>
+<style>
+  :root{
+    --bg:#fff4e8; --panel:#ffffff; --panel2:#fff3e6; --ink:#3a2c1e; --muted:#9a866f;
+    --line:#f0e0cc; --accent:#ef5f27; --accent-ink:#fff; --green:#3d9a5f; --shadow:0 3px 14px rgba(200,130,60,.14);
+  }
+  @media (prefers-color-scheme:dark){
+    :root{--bg:#1f1810; --panel:#2a2118; --panel2:#332818; --ink:#f3e9dc;
+      --muted:#b39c84; --line:#42341f; --shadow:0 3px 16px rgba(0,0,0,.45);}
+  }
+  *{box-sizing:border-box}
+  body{margin:0;font-family:"Hiragino Kaku Gothic ProN","Yu Gothic UI",system-ui,sans-serif;
+    color:var(--ink);line-height:1.6;-webkit-text-size-adjust:100%;
+    background:linear-gradient(165deg,#fff7ec 0%,#ffe9d2 50%,#ffdfc4 100%);background-attachment:fixed;min-height:100vh}
+  @media (prefers-color-scheme:dark){ body{background:linear-gradient(165deg,#221a11 0%,#2a1f14 60%,#2e2013 100%)} }
+  .wrap{max-width:1000px;margin:0 auto;padding:0 14px 80px}
+
+  header.app{position:sticky;top:0;z-index:20;background:rgba(255,245,233,.9);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  @media (prefers-color-scheme:dark){ header.app{background:rgba(34,26,17,.9)} }
+  .hd-inner{max-width:1000px;margin:0 auto;padding:12px 14px 0}
+  .title{display:flex;align-items:center;gap:10px;font-size:21px;font-weight:800;letter-spacing:.02em}
+  .title .logo{font-size:26px}
+  .title small{font-weight:600;color:var(--muted);font-size:12px;margin-left:auto}
+  nav.tabs{display:flex;gap:4px;margin-top:10px}
+  nav.tabs button{flex:1;border:none;background:transparent;color:var(--muted);font-weight:700;
+    font-size:14px;padding:10px 6px;cursor:pointer;border-bottom:3px solid transparent;transition:.15s}
+  nav.tabs button.on{color:var(--accent);border-color:var(--accent)}
+  nav.tabs button:hover{color:var(--ink)}
+
+  .tab{display:none;padding-top:16px}
+  .tab.on{display:block}
+
+  /* --- 設定バー --- */
+  .toolbar{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px;
+    box-shadow:var(--shadow);display:flex;flex-wrap:wrap;gap:14px;align-items:flex-end}
+  .field{display:flex;flex-direction:column;gap:4px}
+  .field label{font-size:11px;font-weight:700;color:var(--muted)}
+  select,input[type=text],input[type=number],textarea{font:inherit;color:var(--ink);background:var(--panel2);
+    border:1px solid var(--line);border-radius:9px;padding:8px 10px}
+  .chips-in{display:flex;gap:6px;flex-wrap:wrap}
+  .chips-in label{display:inline-flex;align-items:center;gap:4px;background:var(--panel2);border:1px solid var(--line);
+    border-radius:20px;padding:5px 11px;font-size:13px;font-weight:700;cursor:pointer;user-select:none}
+  .chips-in input{accent-color:var(--accent)}
+  .grow{flex:1 1 auto}
+  .btn{border:none;border-radius:11px;padding:10px 16px;font:inherit;font-weight:800;cursor:pointer;transition:.15s}
+  .btn.primary{background:var(--accent);color:var(--accent-ink);box-shadow:0 4px 12px rgba(239,95,39,.3)}
+  .btn.primary:hover{filter:brightness(1.06)}
+  .btn.ghost{background:var(--panel2);color:var(--ink);border:1px solid var(--line)}
+  .btn.ghost:hover{border-color:var(--accent);color:var(--accent)}
+  .btn.sm{padding:6px 11px;font-size:12px;border-radius:9px}
+
+  /* --- 写真タイル(実写。読込失敗時は絵文字にフォールバック) --- */
+  .photo{position:relative;overflow:hidden;line-height:1;flex:none}
+  .photo .fb{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;line-height:1}
+  .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;border:0;background:inherit}
+  .pg-wa{background:linear-gradient(135deg,#e5f6e8,#c6ebcd)}
+  .pg-yo{background:linear-gradient(135deg,#fff0d6,#ffdaad)}
+  .pg-chu{background:linear-gradient(135deg,#ffe3da,#ffc5b5)}
+  .pg-kor{background:linear-gradient(135deg,#ffe0ea,#ffbfd3)}
+  .pg-eth{background:linear-gradient(135deg,#dbf2eb,#b9e6d6)}
+  .pg-etc{background:linear-gradient(135deg,#efeae3,#dcd4c9)}
+
+  /* ジャンルチップ */
+  .gchip{flex:none;text-align:center;font-size:11px;font-weight:800;color:#fff;border-radius:6px;padding:3px 7px;white-space:nowrap}
+  .gen-wa{background:#3d9a5f} .gen-yo{background:#d9822b} .gen-chu{background:#c0392b}
+  .gen-kor{background:#d6417f} .gen-eth{background:#1f9e93} .gen-etc{background:#8a8a8a}
+
+  /* --- 日カード --- */
+  .days{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:14px;margin-top:16px}
+  .day{background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column}
+  .day-hd{display:flex;align-items:center;gap:8px;padding:10px 14px;border-bottom:1px solid var(--line);background:var(--panel2)}
+  .day-hd .dow{font-weight:800;font-size:15px}
+  .day-hd .kcal{margin-left:auto;font-size:12px;font-weight:700;color:var(--muted)}
+  .slot{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px dashed var(--line)}
+  .slot:last-of-type{border-bottom:none}
+  .slot .photo{width:46px;height:46px;border-radius:11px;font-size:26px}
+  .slot .meta{flex:1;min-width:0}
+  .slot .role{font-size:10px;font-weight:800;color:var(--muted);letter-spacing:.06em;display:flex;align-items:center;gap:6px}
+  .slot .name{font-weight:800;font-size:15px;cursor:pointer}
+  .slot .name:hover{color:var(--accent);text-decoration:underline}
+  .slot .tag{font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .slot .acts{display:flex;flex-direction:column;gap:4px}
+  .iconbtn{border:1px solid var(--line);background:var(--panel2);border-radius:7px;width:30px;height:27px;
+    cursor:pointer;font-size:14px;line-height:1;display:flex;align-items:center;justify-content:center;color:var(--ink)}
+  .iconbtn:hover{border-color:var(--accent)}
+  .iconbtn.locked{background:var(--accent);border-color:var(--accent);color:#fff}
+  .day-ft{padding:9px 14px;display:flex;align-items:center;gap:7px;flex-wrap:wrap;background:var(--panel2);margin-top:auto}
+  .nut{display:flex;gap:5px;flex-wrap:wrap;flex:1}
+  .nchip{font-size:10.5px;font-weight:700;background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:2px 8px;color:var(--green)}
+  .warn{font-size:11px;color:#d9822b;font-weight:700}
+
+  .empty{text-align:center;padding:60px 20px;color:var(--muted)}
+  .empty .big{font-size:52px;margin-bottom:10px}
+
+  /* --- 買い物リスト --- */
+  .shop-hd{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+  .shop-hd .note{color:var(--muted);font-size:13px;flex:1}
+  .cat{background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);margin-bottom:12px;overflow:hidden}
+  .cat h3{margin:0;padding:10px 14px;font-size:14px;background:var(--panel2);border-bottom:1px solid var(--line)}
+  .cat ul{list-style:none;margin:0;padding:4px 0}
+  .cat li{display:flex;align-items:center;gap:10px;padding:8px 14px}
+  .cat li input{width:18px;height:18px;accent-color:var(--green);flex:none}
+  .cat li .nm{font-weight:600}
+  .cat li .am{margin-left:auto;color:var(--muted);font-size:13px}
+  .cat li.done .nm,.cat li.done .am{text-decoration:line-through;opacity:.5}
+
+  /* --- レシピ帳(絞り込み) --- */
+  .filters{background:var(--panel);border:1px solid var(--line);border-radius:16px;box-shadow:var(--shadow);padding:14px;margin-bottom:16px}
+  .filt-top{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px}
+  .filt-top input[type=text]{flex:1;min-width:160px}
+  .fgroup{margin-top:10px}
+  .fgroup .flabel{font-size:11px;font-weight:800;color:var(--muted);letter-spacing:.05em;margin-bottom:6px}
+  .fchips{display:flex;gap:7px;flex-wrap:wrap}
+  .fchip{border:1.5px solid var(--line);background:var(--panel2);color:var(--ink);border-radius:20px;
+    padding:6px 13px;font-size:13px;font-weight:700;cursor:pointer;transition:.12s;user-select:none}
+  .fchip:hover{border-color:var(--accent)}
+  .fchip.on{background:var(--accent);border-color:var(--accent);color:#fff}
+  .filt-foot{display:flex;align-items:center;gap:12px;margin-top:12px}
+  .filt-foot .cnt{font-size:13px;color:var(--muted);font-weight:700}
+
+  .rlist{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+  .rcard{background:var(--panel);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);cursor:pointer;transition:.15s;overflow:hidden;position:relative}
+  .rcard:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 8px 20px rgba(200,120,50,.2)}
+  .rcard .photo{width:100%;height:104px;font-size:52px}
+  .rcard .rc-body{padding:10px 12px}
+  .rcard .rc-top{display:flex;align-items:center;gap:7px;margin-bottom:4px}
+  .rcard .rname{font-weight:800;font-size:15px;line-height:1.3}
+  .rcard .rtag{font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .rcard .rmeta{font-size:11px;color:var(--muted);margin-top:6px}
+  .badge{position:absolute;top:8px;font-size:10px;font-weight:800;color:#fff;border-radius:6px;padding:3px 7px;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+  .badge.pop{left:8px;background:#ef5f27}
+  .badge.mine{right:8px;background:var(--green)}
+
+  /* --- モーダル --- */
+  .ov{position:fixed;inset:0;background:rgba(40,25,10,.55);display:none;align-items:flex-start;justify-content:center;z-index:50;padding:24px 12px;overflow:auto}
+  .ov.on{display:flex}
+  .modal{background:var(--panel);border-radius:18px;max-width:580px;width:100%;box-shadow:0 20px 60px rgba(0,0,0,.35);overflow:hidden}
+  .modal-hd{display:flex;align-items:center;gap:12px;padding:14px 18px;border-bottom:1px solid var(--line)}
+  .modal-hd .photo{width:52px;height:52px;border-radius:13px;font-size:30px}
+  .modal-hd .mt{font-size:19px;font-weight:800}
+  .modal-hd .x{margin-left:auto;border:none;background:var(--panel2);border-radius:8px;width:32px;height:32px;font-size:18px;cursor:pointer;color:var(--ink);flex:none}
+  .modal-bd{padding:16px 18px;max-height:70vh;overflow:auto}
+  .sec-t{font-size:12px;font-weight:800;color:var(--accent);letter-spacing:.06em;margin:16px 0 6px;border-bottom:2px solid var(--line);padding-bottom:4px}
+  .sec-t:first-child{margin-top:0}
+  .ing-row{display:flex;justify-content:space-between;gap:10px;padding:5px 0;border-bottom:1px dotted var(--line)}
+  .ing-row .am{color:var(--muted);flex:none}
+  ol.steps{margin:0;padding-left:22px}
+  ol.steps li{padding:4px 0}
+  .nut-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+  .cond-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .cond-chip{font-size:11px;font-weight:700;background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:2px 9px;color:var(--muted)}
+
+  /* --- レシピ追加フォーム --- */
+  .frow{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px}
+  .frow .field{flex:1;min-width:110px}
+  .frow .field.full{flex-basis:100%}
+  .dyn-row{display:flex;gap:8px;margin-bottom:6px}
+  .dyn-row input{flex:1}
+  .dyn-row .del{flex:none;width:34px;background:var(--panel2);border:1px solid var(--line);border-radius:8px;cursor:pointer;color:var(--muted)}
+  .tagset{display:flex;gap:6px;flex-wrap:wrap}
+  .tagset label{display:inline-flex;align-items:center;gap:4px;background:var(--panel2);border:1px solid var(--line);border-radius:16px;padding:5px 10px;font-size:12px;cursor:pointer}
+  .form-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:16px}
+  .hint{font-size:11px;color:var(--muted)}
+
+  .toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(20px);background:var(--ink);color:var(--bg);
+    padding:10px 18px;border-radius:24px;font-weight:700;font-size:14px;opacity:0;pointer-events:none;transition:.25s;z-index:80}
+  .toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+
+  /* --- 追加機能まわり --- */
+  .subbar{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap;align-items:center}
+  .subbar .sep{flex:1}
+  .tgt{font-weight:800;border-radius:10px;padding:1px 7px;font-size:11px;margin-left:6px}
+  .tgt.ok{background:rgba(61,154,95,.16);color:var(--green)}
+  .tgt.over{background:rgba(217,130,43,.20);color:#d9822b}
+  .cost-note{margin-top:2px;font-size:13px;color:var(--muted)}
+  .cost-note b{color:var(--ink)}
+  .cost-note .warn{color:#d9822b;font-weight:700}
+  .cost-note .ok{color:var(--green);font-weight:700}
+  /* お気に入りハート(レシピカード右上) */
+  .favbtn{position:absolute;top:8px;right:8px;z-index:3;border:none;background:rgba(255,255,255,.92);color:#e0457f;
+    width:30px;height:30px;border-radius:50%;font-size:16px;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.18);line-height:1;padding:0}
+  .favbtn:hover{transform:scale(1.1)}
+  .favbtn.on{background:#e0457f;color:#fff}
+  @media (prefers-color-scheme:dark){ .favbtn{background:rgba(40,30,20,.85)} }
+  .rcard.isng{opacity:.5}
+  .rc-acts{margin-top:8px}
+  .mini{border:1px solid var(--line);background:var(--panel2);color:var(--muted);border-radius:8px;
+    padding:4px 9px;font-size:11px;font-weight:700;cursor:pointer;line-height:1.2}
+  .mini:hover{border-color:var(--accent);color:var(--accent)}
+  .mini.on{background:#c0392b;border-color:#c0392b;color:#fff}
+  .mine-t{color:var(--green);font-weight:800}
+  .detail-acts{display:flex;gap:8px;margin-bottom:10px}
+  .tog{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:var(--muted);cursor:pointer;user-select:none}
+  .tog input{accent-color:var(--accent)}
+  /* 食事帯セクション(朝/昼/夜) */
+  .band-sec{border-top:1px dashed var(--line)}
+  .band-sec:first-of-type{border-top:none}
+  .band-hd{display:flex;align-items:center;gap:6px;padding:8px 14px 2px;font-size:12px;font-weight:800;color:var(--muted);letter-spacing:.03em}
+  .band-hd .bcal{margin-left:auto;font-weight:700}
+  .band-ft{padding:6px 14px 10px;display:flex;align-items:center;gap:7px;flex-wrap:wrap;background:var(--panel2)}
+
+  @media print{
+    header.app,.shop-hd .btn,.tab:not(.on){display:none!important}
+    body{background:#fff;color:#000}
+    .cat{box-shadow:none;break-inside:avoid}
+  }
+  @media (max-width:520px){
+    .days{grid-template-columns:1fr}
+    .rlist{grid-template-columns:repeat(auto-fill,minmax(150px,1fr))}
+    .toolbar{gap:10px}
+  }
+</style>
+</head>
+<body>
+<header class="app">
+  <div class="hd-inner">
+    <div class="title"><span class="logo">🍳</span>今週の献立<small id="autosave">自動保存</small></div>
+    <nav class="tabs">
+      <button data-tab="plan" class="on">📅 今週の献立</button>
+      <button data-tab="shop">🛒 買い物リスト</button>
+      <button data-tab="book">📖 レシピを探す</button>
+    </nav>
+  </div>
+</header>
+
+<div class="wrap">
+  <!-- ===== 今週の献立 ===== -->
+  <section id="tab-plan" class="tab on">
+    <div class="toolbar">
+      <div class="field">
+        <label>人数</label>
+        <select id="servings">
+          <option value="1">1人分</option><option value="2" selected>2人分</option>
+          <option value="3">3人分</option><option value="4">4人分</option><option value="5">5人分</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>日数</label>
+        <select id="daysSel">
+          <option value="3">3日</option><option value="4">4日</option><option value="5">5日</option>
+          <option value="6">6日</option><option value="7" selected>7日</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>食事帯</label>
+        <div class="chips-in" id="bands"></div>
+      </div>
+      <div class="field">
+        <label>ジャンルを除く</label>
+        <div class="chips-in" id="exclude"></div>
+      </div>
+      <div class="field">
+        <label>調理時間の上限</label>
+        <select id="maxtime">
+          <option value="">指定なし</option><option value="15">15分以内</option>
+          <option value="20">20分以内</option><option value="30">30分以内</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>1日のカロリー目標</label>
+        <select id="calTarget">
+          <option value="">指定なし</option><option value="500">〜500kcal</option>
+          <option value="600">〜600kcal</option><option value="700">〜700kcal</option><option value="800">〜800kcal</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>1週間の予算目安</label>
+        <input type="number" id="budget" placeholder="円" min="0" step="500" style="width:100px">
+      </div>
+      <div class="field grow">
+        <label>苦手な食材（カンマ区切り）</label>
+        <input type="text" id="dislike" placeholder="例: なす, パクチー">
+      </div>
+      <button class="btn ghost" id="regenAll">🔀 全部作り直す</button>
+      <button class="btn primary" id="genBtn">✨ 献立を作る</button>
+    </div>
+    <div class="subbar">
+      <button class="btn ghost sm" id="copyPlan">📋 献立をコピー</button>
+      <button class="btn ghost sm" id="exportBtn">⬇️ 保存（JSON）</button>
+      <button class="btn ghost sm" id="importBtn">⬆️ 読み込み</button>
+      <input type="file" id="importFile" accept="application/json,.json" hidden>
+    </div>
+    <div id="days"></div>
+  </section>
+
+  <!-- ===== 買い物リスト ===== -->
+  <section id="tab-shop" class="tab">
+    <div class="shop-hd">
+      <div class="note" id="shopNote"></div>
+      <button class="btn ghost sm" id="copyShop">📋 コピー</button>
+      <button class="btn ghost sm" id="printShop">🖨 印刷</button>
+      <button class="btn ghost sm" id="clearCheck">チェック解除</button>
+    </div>
+    <div id="shopList"></div>
+  </section>
+
+  <!-- ===== レシピを探す(絞り込み) ===== -->
+  <section id="tab-book" class="tab">
+    <div class="filters">
+      <div class="filt-top">
+        <input type="text" id="rbSearch" placeholder="🔍 料理名で検索">
+        <select id="rbSort">
+          <option value="pop">人気順</option>
+          <option value="time">調理時間が短い順</option>
+          <option value="name">名前順</option>
+        </select>
+        <button class="btn primary sm" id="addRecipe">＋ レシピを追加</button>
+      </div>
+      <div class="fgroup"><div class="flabel">カテゴリ</div><div class="fchips" id="fCat"></div></div>
+      <div class="fgroup"><div class="flabel">ジャンル</div><div class="fchips" id="fGenre"></div></div>
+      <div class="fgroup"><div class="flabel">こだわり条件・食材（すべて満たす）</div><div class="fchips" id="fCond"></div></div>
+      <div class="filt-foot">
+        <span class="cnt" id="rbCount"></span>
+        <label class="tog"><input type="checkbox" id="favOnly">♥ お気に入りだけ</label>
+        <label class="tog"><input type="checkbox" id="hideNg" checked>苦手を隠す</label>
+        <button class="btn ghost sm" id="clearFilter">条件をクリア</button>
+      </div>
+    </div>
+    <div class="rlist" id="rlist"></div>
+  </section>
+</div>
+
+<!-- レシピ詳細モーダル -->
+<div class="ov" id="detailOv">
+  <div class="modal">
+    <div class="modal-hd">
+      <div class="photo" id="dPhoto"></div>
+      <span class="mt" id="dName"></span>
+      <button class="x" data-close>×</button>
+    </div>
+    <div class="modal-bd" id="dBody"></div>
+  </div>
+</div>
+
+<!-- レシピ追加/編集モーダル -->
+<div class="ov" id="formOv">
+  <div class="modal">
+    <div class="modal-hd">
+      <span class="mt" id="fTitle">レシピを追加</span>
+      <button class="x" data-close>×</button>
+    </div>
+    <div class="modal-bd">
+      <div class="frow">
+        <div class="field" style="flex:0 0 70px"><label>絵文字</label><input type="text" id="fEmoji" value="🍽️" maxlength="4" style="text-align:center;font-size:20px"></div>
+        <div class="field" style="flex:1"><label>料理名 *</label><input type="text" id="fName" placeholder="例: 肉豆腐"></div>
+      </div>
+      <div class="frow">
+        <div class="field full"><label>ひとこと</label><input type="text" id="fTagline" placeholder="例: しみしみで白ごはんに合う"></div>
+      </div>
+      <div class="frow">
+        <div class="field"><label>カテゴリ *</label><select id="fCatSel"><option>主食</option><option>主菜</option><option>副菜</option><option>汁物</option><option>その他</option></select></div>
+        <div class="field"><label>ジャンル *</label><select id="fGenreSel"><option>和食</option><option>洋食</option><option>中華</option><option>韓国</option><option>エスニック</option><option>その他</option></select></div>
+        <div class="field"><label>時間(分)</label><input type="number" id="fTime" value="20" min="1"></div>
+        <div class="field"><label>基準人数</label><input type="number" id="fServings" value="2" min="1"></div>
+        <div class="field"><label>kcal/人</label><input type="number" id="fCal" value="300" min="0"></div>
+      </div>
+      <div class="sec-t">こだわり条件</div>
+      <div class="tagset" id="fCondSet"></div>
+      <div class="sec-t">材料</div>
+      <div id="fIng"></div>
+      <button class="btn ghost sm" id="addIng" type="button">＋ 材料を追加</button>
+      <div class="sec-t">作り方</div>
+      <div id="fSteps"></div>
+      <button class="btn ghost sm" id="addStep" type="button">＋ 手順を追加</button>
+      <div class="sec-t">栄養タグ</div>
+      <div class="tagset" id="fTags">
+        <label><input type="checkbox" value="たんぱく質">たんぱく質</label>
+        <label><input type="checkbox" value="野菜">野菜</label>
+        <label><input type="checkbox" value="炭水化物">炭水化物</label>
+        <label><input type="checkbox" value="食物繊維">食物繊維</label>
+        <label><input type="checkbox" value="カルシウム">カルシウム</label>
+      </div>
+      <div class="form-actions">
+        <button class="btn ghost" id="delRecipe" type="button" style="margin-right:auto;display:none">🗑 削除</button>
+        <button class="btn ghost" data-close type="button">キャンセル</button>
+        <button class="btn primary" id="saveRecipe" type="button">保存</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="recipes.js"></script>
+<script src="logic.js"></script>
+<script>
+(function(){
+  "use strict";
+  var L = window.KondateLogic;
+  var DOW = ["月","火","水","木","金","土","日"];
+  var BANDS = ["朝","昼","夜"];
+  var BAND_LABEL = { "朝":"朝食", "昼":"昼食", "夜":"夕食" };
+  var BAND_ICON = { "朝":"🌅", "昼":"🌞", "夜":"🌙" };
+  var LS = { plan:"kondate_plan", set:"kondate_settings", custom:"kondate_custom", check:"kondate_check", fav:"kondate_fav", ng:"kondate_ng" };
+  var CATS = ["主食","主菜","副菜","汁物","その他"];
+  var GENRES = ["和食","洋食","中華","韓国","エスニック","その他"];
+  var CONDS = ["定番","時短","節約","ヘルシー","野菜たっぷり","がっつり","作り置き","子ども向け","おもてなし"];
+  var PROTEINS = ["牛肉","豚肉","鶏肉","魚"]; // こだわり条件(主な食材)。材料から自動判定して絞り込む
+  function condsOf(r){ return (r.cond||[]).concat(L.proteinTags(r)); } // 表示・絞り込み用の合成条件
+  var GEN = { "和食":{s:"和",c:"wa"}, "洋食":{s:"洋",c:"yo"}, "中華":{s:"中",c:"chu"},
+              "韓国":{s:"韓",c:"kor"}, "エスニック":{s:"エス",c:"eth"}, "その他":{s:"他",c:"etc"} };
+  function gen(g){ return GEN[g] || {s:g,c:"etc"}; }
+
+  // ---- 状態 ----
+  var custom = load(LS.custom, []);
+  var settings = Object.assign({ servings:2, exclude:[], maxTime:"", days:7, calTarget:"", budget:"", dislike:[], bands:["夜"] }, load(LS.set, {}));
+  var saved = load(LS.plan, null);
+  var checked = new Set(load(LS.check, []));
+  var fav = new Set(load(LS.fav, []));   // お気に入りレシピID
+  var ng = new Set(load(LS.ng, []));     // 「献立に出さない」レシピID
+  var plan = [];   // [ {朝?:{main,side,soup}, 昼?:{...}, 夜?:{...}} ] 各日の有効な食事帯ごとに1食
+  var locks = [];  // [ {朝?:{main,side,soup(bool)}, ...} ]
+  // レシピ帳フィルタ状態
+  var fltCat = new Set(), fltGenre = new Set(), fltCond = new Set();
+
+  function allRecipes(){ return RECIPES.concat(custom); }
+  function byId(){ var m={}; allRecipes().forEach(function(r){m[r.id]=r;}); return m; }
+
+  // ---- 永続化 ----
+  function load(k, d){ try{ var v=localStorage.getItem(k); return v?JSON.parse(v):d; }catch(e){ return d; } }
+  function save(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} }
+  function mealIds(m){ return { main:m.main&&m.main.id, side:m.side&&m.side.id, soup:m.soup&&m.soup.id }; }
+  function serializeDay(day){ var o={}; settings.bands.forEach(function(b){ if(day[b]) o[b]=mealIds(day[b]); }); return o; }
+  function savePlan(){
+    save(LS.plan, { ids:plan.map(serializeDay), locks:locks, bands:settings.bands });
+    flashSave();
+  }
+  function resolveMeal(ids, map){ ids=ids||{}; return { main:map[ids.main]||null, side:map[ids.side]||null, soup:map[ids.soup]||null }; }
+  function restorePlan(){
+    if(!saved || !saved.ids) return false;
+    var map = byId();
+    // 保存された食事帯(旧データには無い=夕食のみ扱い)
+    if(saved.bands && saved.bands.length) settings.bands = BANDS.filter(function(b){ return saved.bands.indexOf(b)>=0; });
+    if(!settings.bands.length) settings.bands = ["夜"];
+    plan = saved.ids.map(function(dayIds){
+      dayIds = dayIds || {};
+      // 旧形式({main,side,soup} を直接持つ)は夕食1食として取り込む
+      if(("main" in dayIds)||("side" in dayIds)||("soup" in dayIds)) dayIds = { "夜":dayIds };
+      var day={};
+      settings.bands.forEach(function(b){ if(dayIds[b]) day[b]=resolveMeal(dayIds[b],map); });
+      return day;
+    });
+    // ロックも旧形式を夕食に移行
+    locks = (saved.locks||[]).map(function(lk){
+      if(lk && (("main" in lk)||("side" in lk)||("soup" in lk))) return { "夜":lk };
+      return lk||{};
+    });
+    return true;
+  }
+  var saveTimer;
+  function flashSave(){ var e=$("#autosave"); e.textContent="✓ 保存しました"; clearTimeout(saveTimer);
+    saveTimer=setTimeout(function(){ e.textContent="自動保存"; },1500); }
+
+  // ---- ユーティリティ ----
+  function $(s,r){ return (r||document).querySelector(s); }
+  function $all(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); }
+  function el(t,c,h){ var e=document.createElement(t); if(c)e.className=c; if(h!=null)e.innerHTML=h; return e; }
+  function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+  function toast(m){ var t=$("#toast"); t.textContent=m; t.classList.add("on"); setTimeout(function(){t.classList.remove("on");},1800); }
+  function scaleIng(r){ var f=settings.servings/(r.servings||2); return r.ingredients.map(function(i){ return {n:i.n, a:L.scaleAmount(i.a,f)}; }); }
+  function hashStr(s){ var h=0; for(var i=0;i<s.length;i++){ h=(h*31+s.charCodeAt(i))>>>0; } return h%100000; }
+  function imgSrc(r){ return "https://loremflickr.com/320/240/"+encodeURIComponent(r.img||"food")+"?lock="+hashStr(r.id); }
+  // 実写を <img> で表示。読込失敗(オフライン等)は onerror で img を消し、絵文字タイル(.fb)を見せる。
+  function photoInner(r){ return '<span class="fb">'+(r.emoji||"🍽️")+'</span><img src="'+imgSrc(r)+'" alt="'+esc(r.name)+'" loading="lazy" onerror="this.remove()">'; }
+  function photoHTML(r, cls){ return '<div class="photo pg-'+gen(r.genre).c+(cls?" "+cls:"")+'">'+photoInner(r)+'</div>'; }
+  function gchipHTML(r){ var g=gen(r.genre); return '<span class="gchip gen-'+g.c+'">'+g.s+'</span>'; }
+
+  // ---- 生成 ----
+  function dayCount(){ return settings.days||7; }
+  function opts(band){ return {
+    days: dayCount(),
+    excludeGenres: settings.exclude.slice(),
+    maxTime: settings.maxTime?Number(settings.maxTime):null,
+    favorites: Array.from(fav),
+    ngIds: Array.from(ng),
+    dislikeWords: settings.dislike||[],
+    calTarget: settings.calTarget?Number(settings.calTarget):null,
+    meal: band   // 食事帯(朝/昼/夜)ごとに、その帯に合うレシピだけで生成
+  }; }
+  function emptyMeal(){ return {main:null,side:null,soup:null}; }
+  function ensureLocks(){
+    if(locks.length!==plan.length) locks = plan.map(function(){ return {}; });
+    for(var d=0; d<plan.length; d++){
+      if(!locks[d]) locks[d]={};
+      settings.bands.forEach(function(b){ if(!locks[d][b]) locks[d][b]={main:false,side:false,soup:false}; });
+    }
+  }
+  // 日数変更時に plan/locks を伸縮(既存の日はそのまま残す)。
+  function resizePlan(n){
+    ensureLocks();
+    if(plan.length>n){ plan=plan.slice(0,n); locks=locks.slice(0,n); }
+    else while(plan.length<n){ plan.push({}); locks.push({}); }
+    ensureLocks();
+  }
+  // 献立中の全「1食」を平らに集める(買い物リスト・費用・空判定に使う)。
+  function flatMeals(){ var out=[]; plan.forEach(function(day){ settings.bands.forEach(function(b){ if(day[b]) out.push(day[b]); }); }); return out; }
+  function hasPlan(){ return flatMeals().some(function(m){ return m.main; }); }
+  // 1つの食事帯だけ生成し直す。shouldRegen(d,role)=true の枠を(ロック外なら)埋め直す。
+  function regenerateBand(band, shouldRegen){
+    ensureLocks();
+    var current = plan.map(function(day){ return (day&&day[band]) || emptyMeal(); });
+    var lk = {};
+    for(var d=0;d<plan.length;d++){ lk[d]={}; ["main","side","soup"].forEach(function(role){
+      var lockedFlag = locks[d][band] && locks[d][band][role];
+      var regen = shouldRegen(d,role) && !lockedFlag;
+      lk[d][role] = !regen;
+    }); }
+    var week = L.generateWeek(allRecipes(), Object.assign(opts(band), { current:current, locks:lk }));
+    plan.forEach(function(day,d){ day[band] = week[d]; });
+  }
+  function regenerateAll(shouldRegen){ settings.bands.forEach(function(b){ regenerateBand(b, shouldRegen); }); savePlan(); renderPlan(); }
+  function rerollBand(band, shouldRegen){ regenerateBand(band, shouldRegen); savePlan(); renderPlan(); if($("#tab-shop").classList.contains("on")) renderShop(); }
+  function genAll(){
+    var n = dayCount();
+    if(plan.length!==n){ plan=[]; locks=[]; for(var i=0;i<n;i++){ plan.push({}); locks.push({}); } }
+    ensureLocks();
+    regenerateAll(function(){ return true; });
+    toast(n+"日分（"+settings.bands.map(function(b){return BAND_LABEL[b];}).join("・")+"）を作りました");
+  }
+  // 日数セレクト変更: 既存の日を残しつつ伸縮し、空いた枠だけ生成。
+  function setDays(n){
+    settings.days=n; save(LS.set,settings);
+    resizePlan(n);
+    if(hasPlan()) regenerateAll(function(){ return false; });
+    else renderPlan();
+  }
+  // 食事帯の選択変更: 外した帯を消し、新しく足した帯を生成。
+  function setBands(newBands){
+    var added = newBands.filter(function(b){ return settings.bands.indexOf(b)<0; });
+    var removed = settings.bands.filter(function(b){ return newBands.indexOf(b)<0; });
+    settings.bands = BANDS.filter(function(b){ return newBands.indexOf(b)>=0; });
+    save(LS.set, settings);
+    plan.forEach(function(day){ removed.forEach(function(b){ delete day[b]; }); });
+    locks.forEach(function(lk){ removed.forEach(function(b){ if(lk) delete lk[b]; }); });
+    ensureLocks();
+    if(added.length && plan.length){ added.forEach(function(b){ regenerateBand(b, function(){ return true; }); }); }
+    savePlan(); renderPlan();
+    if($("#tab-shop").classList.contains("on")) renderShop();
+  }
+
+  // ---- レンダリング: 今週の献立 ----
+  function dayLabel(d){ return dayCount()===7 ? DOW[d]+"曜日" : (d+1)+"日目"; }
+  function renderPlan(){
+    var box = $("#days"); box.innerHTML = "";
+    if(!hasPlan()){
+      var e = el("div","empty");
+      e.innerHTML = '<div class="big">🍽️</div><div>まだ献立がありません。<br>食事帯（🌅朝・🌞昼・🌙夜）を選んで「献立を作る」で始めましょう。</div>';
+      box.className=""; box.appendChild(e); return;
+    }
+    box.className="days";
+    var calT = settings.calTarget?Number(settings.calTarget):null;
+    plan.forEach(function(day,d){
+      var card = el("div","day");
+      var total = 0;
+      settings.bands.forEach(function(b){ if(day[b]) total += L.dayNutrition(day[b]).cal; });
+      var tgt = "";
+      if(calT){ var diff=total-calT; tgt=' <span class="tgt '+(diff>0?"over":"ok")+'">目標'+(diff>0?"+"+diff:diff)+'</span>'; }
+      card.appendChild(el("div","day-hd",'<span class="dow">'+dayLabel(d)+'</span><span class="kcal">1日 約'+total+'kcal / 人'+tgt+'</span>'));
+      BANDS.forEach(function(band){
+        if(settings.bands.indexOf(band)<0) return;
+        var meal = day[band] || emptyMeal();
+        var nut = L.dayNutrition(meal);
+        var sec = el("div","band-sec");
+        sec.appendChild(el("div","band-hd", BAND_ICON[band]+' '+BAND_LABEL[band]+'<span class="bcal">約'+nut.cal+'kcal</span>'));
+        [["main"],["side","副菜"],["soup","汁物"]].forEach(function(pair){
+          var role=pair[0], r=meal[role];
+          var slot=el("div","slot");
+          if(!r){ slot.innerHTML='<div class="meta"><div class="role">'+(pair[1]||"主菜")+'</div><div class="tag">候補なし</div></div>'; sec.appendChild(slot); return; }
+          var lk = locks[d][band] && locks[d][band][role];
+          var label = role==="main" ? r.cat : pair[1];
+          slot.innerHTML =
+            photoHTML(r)+
+            '<div class="meta"><div class="role">'+gchipHTML(r)+label+' ・ '+r.time+'分</div>'+
+            '<div class="name" data-detail="'+r.id+'">'+esc(r.name)+'</div>'+
+            '<div class="tag">'+esc(r.tagline||"")+'</div></div>'+
+            '<div class="acts">'+
+            '<button class="iconbtn'+(lk?" locked":"")+'" data-lock="'+d+','+band+','+role+'" title="固定">'+(lk?"🔒":"🔓")+'</button>'+
+            '<button class="iconbtn" data-reroll="'+d+','+band+','+role+'" title="この料理を変える">🔄</button>'+
+            '</div>';
+          sec.appendChild(slot);
+        });
+        var ft=el("div","band-ft");
+        var nch = nut.covered.map(function(c){ return '<span class="nchip">'+c+'</span>'; }).join("");
+        var warn = nut.missing.length ? '<span class="warn">'+ (nut.missing.indexOf("野菜")>=0?"🥗野菜が控えめ":"") + (nut.missing.indexOf("たんぱく質")>=0?" 🍖たんぱく質が控えめ":"") +'</span>' : "";
+        ft.innerHTML = '<div class="nut">'+nch+'</div>'+warn+'<button class="btn ghost sm" data-rerollband="'+d+','+band+'">この'+BAND_LABEL[band]+'を作り直す</button>';
+        sec.appendChild(ft);
+        card.appendChild(sec);
+      });
+      box.appendChild(card);
+    });
+  }
+
+  // ---- レンダリング: 買い物リスト ----
+  function renderShop(){
+    var note=$("#shopNote"), list=$("#shopList");
+    var meals = flatMeals();
+    if(!meals.some(function(m){return m.main;})){
+      note.textContent=""; list.innerHTML='<div class="empty">先に「今週の献立」を作ってください。</div>'; return;
+    }
+    var n = dayCount();
+    var cost = L.estimateWeekCost(meals, settings.servings);
+    var perDay = Math.round(cost/n/10)*10;
+    var budget = settings.budget?Number(settings.budget):null;
+    var budgetHtml = "";
+    if(budget){ budgetHtml = cost>budget
+      ? ' <span class="warn">予算¥'+budget.toLocaleString()+'を約¥'+(cost-budget).toLocaleString()+'超過</span>'
+      : ' <span class="ok">予算¥'+budget.toLocaleString()+'内 ✓</span>'; }
+    var bandStr = settings.bands.map(function(b){return BAND_LABEL[b];}).join("・");
+    note.innerHTML = settings.servings+"人分 × "+n+"日分（"+bandStr+"）の材料をまとめました。分量は目安です。"+
+      '<div class="cost-note">💰 食材費のざっくり目安 <b>約¥'+cost.toLocaleString()+'</b>（1日あたり約¥'+perDay.toLocaleString()+'）'+budgetHtml+'</div>';
+    var groups = L.buildShoppingList(meals, { servings:settings.servings });
+    list.innerHTML="";
+    groups.forEach(function(g){
+      var c=el("div","cat");
+      c.appendChild(el("h3",null,g.category+" <span class='hint'>("+g.items.length+")</span>"));
+      var ul=el("ul");
+      g.items.forEach(function(it){
+        var key=it.name;
+        var li=el("li",checked.has(key)?"done":"");
+        li.innerHTML='<input type="checkbox" data-check="'+esc(key)+'"'+(checked.has(key)?" checked":"")+'>'+
+          '<span class="nm">'+esc(it.name)+'</span><span class="am">'+esc(it.amount)+'</span>';
+        ul.appendChild(li);
+      });
+      c.appendChild(ul); list.appendChild(c);
+    });
+  }
+  function shopText(){
+    var groups = L.buildShoppingList(flatMeals(), { servings:settings.servings });
+    var out = ["【買い物リスト "+settings.servings+"人分×"+dayCount()+"日分】"];
+    groups.forEach(function(g){ out.push(""); out.push("■ "+g.category);
+      g.items.forEach(function(it){ out.push("□ "+it.name+"  "+it.amount); }); });
+    return out.join("\n");
+  }
+  // 献立をテキスト化(コピー用)
+  function planText(){
+    var out = ["【今週の献立 "+settings.servings+"人分・"+dayCount()+"日】"];
+    plan.forEach(function(day,d){
+      out.push("");
+      out.push("● "+dayLabel(d));
+      BANDS.forEach(function(band){
+        if(settings.bands.indexOf(band)<0 || !day[band]) return;
+        var m=day[band], names=[];
+        [["main","主菜"],["side","副菜"],["soup","汁物"]].forEach(function(pair){ if(m[pair[0]]) names.push(m[pair[0]].name); });
+        if(names.length) out.push("  "+BAND_ICON[band]+BAND_LABEL[band]+"：" + names.join(" / "));
+      });
+    });
+    return out.join("\n");
+  }
+  // 献立・設定・自作レシピ・お気に入りを1ファイルに書き出す
+  function doExport(){
+    var data = { app:"kondate", version:1, exportedAt:new Date().toISOString(),
+      settings:settings,
+      plan: plan.map(serializeDay), bands: settings.bands,
+      locks: locks, fav:Array.from(fav), ng:Array.from(ng), custom:custom };
+    var blob = new Blob([JSON.stringify(data,null,2)], {type:"application/json"});
+    var url = URL.createObjectURL(blob);
+    var a = el("a"); a.href=url; a.download="kondate-"+new Date().toISOString().slice(0,10)+".json";
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+    toast("献立を書き出しました");
+  }
+  function doImport(file){
+    var rd = new FileReader();
+    rd.onload = function(){
+      try{
+        var d = JSON.parse(rd.result);
+        if(d.settings) settings = Object.assign(settings, d.settings);
+        if(Array.isArray(d.custom)) custom = d.custom;
+        if(Array.isArray(d.fav)) fav = new Set(d.fav);
+        if(Array.isArray(d.ng)) ng = new Set(d.ng);
+        save(LS.set,settings); save(LS.custom,custom); save(LS.fav,Array.from(fav)); save(LS.ng,Array.from(ng));
+        if(d.plan){ saved={ ids:d.plan, locks:d.locks, bands:d.bands }; restorePlan(); }
+        if(plan.length) settings.days=plan.length;
+        ensureLocks(); savePlan();
+        syncControls(); renderFilterChips(); renderPlan();
+        if($("#tab-shop").classList.contains("on")) renderShop();
+        if($("#tab-book").classList.contains("on")) renderBook();
+        toast("読み込みました");
+      }catch(e){ toast("読み込みに失敗しました"); }
+    };
+    rd.readAsText(file);
+  }
+
+  // ---- レンダリング: レシピを探す ----
+  function renderBook(){
+    var q=$("#rbSearch").value.trim(), sort=$("#rbSort").value;
+    var favOnly=$("#favOnly").checked, hideNg=$("#hideNg").checked;
+    var list = allRecipes().filter(function(r){
+      if(favOnly && !fav.has(r.id)) return false;
+      if(hideNg && ng.has(r.id)) return false;
+      if(fltCat.size && !fltCat.has(r.cat)) return false;
+      if(fltGenre.size && !fltGenre.has(r.genre)) return false;
+      // こだわり条件は AND(選んだ条件をすべて満たす)。主な食材(牛/豚/鶏/魚)も同じ枠で判定。
+      if(fltCond.size){ var ec=condsOf(r), all=true; fltCond.forEach(function(c){ if(ec.indexOf(c)<0) all=false; }); if(!all) return false; }
+      if(q && r.name.indexOf(q)<0 && (r.kana||"").indexOf(q)<0) return false;
+      return true;
+    });
+    if(sort==="pop") list.sort(function(a,b){ return (b.pop||0)-(a.pop||0); });
+    else if(sort==="time") list.sort(function(a,b){ return a.time-b.time; });
+    else list.sort(function(a,b){ return (a.kana||a.name).localeCompare(b.kana||b.name,"ja"); });
+
+    $("#rbCount").textContent = list.length+"品(全"+allRecipes().length+"品中・自作 "+custom.length+"品 / ♥"+fav.size+"・🚫"+ng.size+")";
+    var box=$("#rlist"); box.innerHTML="";
+    if(!list.length){ box.innerHTML='<div class="empty" style="grid-column:1/-1">条件に合うレシピがありません。</div>'; return; }
+    list.forEach(function(r){
+      var isMine = r.id.indexOf("custom_")===0;
+      var isFav = fav.has(r.id), isNg = ng.has(r.id);
+      var c=el("div","rcard"+(isNg?" isng":""));
+      c.innerHTML =
+        photoHTML(r)+
+        ((r.pop||0)>=80 ? '<span class="badge pop">🔥人気</span>' : '')+
+        '<button class="favbtn'+(isFav?" on":"")+'" data-fav="'+r.id+'" title="お気に入り">'+(isFav?"♥":"♡")+'</button>'+
+        '<div class="rc-body"><div class="rc-top">'+gchipHTML(r)+'<span class="rname">'+esc(r.name)+'</span></div>'+
+        '<div class="rtag">'+esc(r.tagline||"")+'</div>'+
+        '<div class="rmeta">'+r.cat+' ・ '+r.time+'分 ・ 約'+r.cal+'kcal'+(isMine?' ・ <span class="mine-t">自作</span>':'')+'</div>'+
+        '<div class="rc-acts"><button class="mini'+(isNg?" on":"")+'" data-ng="'+r.id+'">'+(isNg?"🚫 献立に出さない":"献立に出さない")+'</button></div></div>';
+      c.addEventListener("click", function(e){ if(e.target.closest("[data-fav],[data-ng]")) return; openDetail(r.id); });
+      box.appendChild(c);
+    });
+  }
+  function toggleFav(id){ if(fav.has(id))fav.delete(id); else fav.add(id); save(LS.fav,Array.from(fav)); renderBook(); }
+  function toggleNg(id){ if(ng.has(id))ng.delete(id); else ng.add(id); save(LS.ng,Array.from(ng)); renderBook(); }
+  function renderFilterChips(){
+    function build(container, arr, set){
+      container.innerHTML="";
+      arr.forEach(function(v){
+        var chip=el("span","fchip"+(set.has(v)?" on":""),v);
+        chip.addEventListener("click", function(){
+          if(set.has(v)) set.delete(v); else set.add(v);
+          chip.classList.toggle("on"); renderBook();
+        });
+        container.appendChild(chip);
+      });
+    }
+    build($("#fCat"), CATS, fltCat);
+    build($("#fGenre"), GENRES, fltGenre);
+    build($("#fCond"), PROTEINS.concat(CONDS), fltCond);
+  }
+
+  // ---- 詳細モーダル ----
+  function openDetail(id){
+    var r = byId()[id]; if(!r) return;
+    var dp=$("#dPhoto"); dp.className="photo pg-"+gen(r.genre).c; dp.innerHTML=photoInner(r);
+    $("#dName").textContent=r.name;
+    var ings = scaleIng(r);
+    var isMine = r.id.indexOf("custom_")===0;
+    var isFav = fav.has(r.id), isNg = ng.has(r.id);
+    var cost = L.estimateRecipeCost(r, settings.servings);
+    var html = '<div class="detail-acts">'+
+        '<button class="btn ghost sm" id="dFav">'+(isFav?"♥ お気に入り":"♡ お気に入り")+'</button>'+
+        '<button class="btn ghost sm" id="dNg">'+(isNg?"🚫 献立に出さない（解除）":"献立に出さない")+'</button>'+
+      '</div>'+
+      '<div class="hint">'+gchipHTML(r)+' '+r.cat+' ・ '+r.time+'分 ・ 約'+r.cal+'kcal/人 ・ '+settings.servings+'人分 ・ 食材費目安 約¥'+cost.toLocaleString()+'</div>'+
+      '<p style="margin:8px 0 0;color:var(--muted)">'+esc(r.tagline||"")+'</p>'+
+      '<div class="cond-row">'+condsOf(r).map(function(c){return '<span class="cond-chip">#'+c+'</span>';}).join("")+'</div>'+
+      '<div class="sec-t">材料（'+settings.servings+'人分・目安）</div>'+
+      ings.map(function(i){ return '<div class="ing-row"><span>'+esc(i.n)+'</span><span class="am">'+esc(i.a)+'</span></div>'; }).join("")+
+      '<div class="sec-t">作り方</div><ol class="steps">'+r.steps.map(function(s){return '<li>'+esc(s)+'</li>';}).join("")+'</ol>'+
+      '<div class="sec-t">栄養の目安</div><div class="nut-row">'+r.tags.map(function(t){return '<span class="nchip">'+t+'</span>';}).join("")+'</div>';
+    if(isMine) html += '<div style="margin-top:18px;text-align:right"><button class="btn ghost sm" id="editThis">✏️ このレシピを編集</button></div>';
+    $("#dBody").innerHTML=html;
+    $("#dFav").addEventListener("click", function(){ toggleFav(r.id); openDetail(r.id); });
+    $("#dNg").addEventListener("click", function(){ toggleNg(r.id); openDetail(r.id); });
+    if(isMine) $("#editThis").addEventListener("click", function(){ closeOv(); openForm(r); });
+    $("#detailOv").classList.add("on");
+  }
+
+  // ---- レシピ追加/編集フォーム ----
+  var editingId = null;
+  function ingRow(n,a){ var d=el("div","dyn-row");
+    d.innerHTML='<input type="text" class="in-n" placeholder="材料" value="'+esc(n||"")+'"><input type="text" class="in-a" placeholder="分量" value="'+esc(a||"")+'" style="max-width:120px"><button class="del" type="button">×</button>';
+    d.querySelector(".del").addEventListener("click",function(){d.remove();}); return d; }
+  function stepRow(s){ var d=el("div","dyn-row");
+    d.innerHTML='<input type="text" class="st" placeholder="手順" value="'+esc(s||"")+'"><button class="del" type="button">×</button>';
+    d.querySelector(".del").addEventListener("click",function(){d.remove();}); return d; }
+  function buildCondCheckboxes(){
+    var box=$("#fCondSet"); box.innerHTML="";
+    CONDS.forEach(function(c){ var l=el("label",null,'<input type="checkbox" value="'+c+'">'+c); box.appendChild(l); });
+  }
+  function openForm(r){
+    editingId = r ? r.id : null;
+    $("#fTitle").textContent = r ? "レシピを編集" : "レシピを追加";
+    $("#delRecipe").style.display = r ? "" : "none";
+    $("#fEmoji").value = r?(r.emoji||"🍽️"):"🍽️";
+    $("#fName").value = r?r.name:""; $("#fTagline").value = r?(r.tagline||""):"";
+    $("#fCatSel").value = r?r.cat:"主菜"; $("#fGenreSel").value = r?r.genre:"和食";
+    $("#fTime").value = r?r.time:20; $("#fServings").value = r?(r.servings||2):2; $("#fCal").value = r?r.cal:300;
+    $all("#fCondSet input").forEach(function(cb){ cb.checked = r ? (r.cond||[]).indexOf(cb.value)>=0 : false; });
+    var ing=$("#fIng"); ing.innerHTML=""; (r?r.ingredients:[{n:"",a:""},{n:"",a:""}]).forEach(function(i){ ing.appendChild(ingRow(i.n,i.a)); });
+    var st=$("#fSteps"); st.innerHTML=""; (r?r.steps:["",""]).forEach(function(s){ st.appendChild(stepRow(s)); });
+    $all("#fTags input").forEach(function(cb){ cb.checked = r ? r.tags.indexOf(cb.value)>=0 : false; });
+    $("#formOv").classList.add("on");
+  }
+  function saveForm(){
+    var name=$("#fName").value.trim();
+    if(!name){ toast("料理名を入力してください"); return; }
+    var ings=[]; $all("#fIng .dyn-row").forEach(function(d){ var n=d.querySelector(".in-n").value.trim(), a=d.querySelector(".in-a").value.trim(); if(n) ings.push({n:n,a:a||"適量"}); });
+    if(!ings.length){ toast("材料を1つ以上入力してください"); return; }
+    var steps=[]; $all("#fSteps .st").forEach(function(i){ var v=i.value.trim(); if(v) steps.push(v); });
+    if(!steps.length) steps=["(手順は未入力)"];
+    var tags=$all("#fTags input:checked").map(function(cb){return cb.value;}); if(!tags.length) tags=["その他"];
+    var cond=$all("#fCondSet input:checked").map(function(cb){return cb.value;});
+    var rec = { id: editingId||("custom_"+Date.now()), name:name, kana:"", emoji:$("#fEmoji").value.trim()||"🍽️",
+      tagline:$("#fTagline").value.trim(), genre:$("#fGenreSel").value, cat:$("#fCatSel").value, cond:cond,
+      time:Number($("#fTime").value)||20, servings:Number($("#fServings").value)||2, cal:Number($("#fCal").value)||300,
+      pop:0, ingredients:ings, steps:steps, tags:tags };
+    if(editingId){ var i=custom.findIndex(function(c){return c.id===editingId;}); if(i>=0) custom[i]=rec; }
+    else custom.push(rec);
+    save(LS.custom, custom);
+    closeOv(); renderBook(); toast(editingId?"レシピを更新しました":"レシピを追加しました");
+  }
+  function deleteRecipe(){
+    if(!editingId) return;
+    if(!confirm("このレシピを削除しますか？")) return;
+    custom = custom.filter(function(c){return c.id!==editingId;});
+    save(LS.custom, custom);
+    plan.forEach(function(day){ settings.bands.forEach(function(b){ var m=day[b]; if(!m) return; ["main","side","soup"].forEach(function(role){ if(m[role]&&m[role].id===editingId) m[role]=null; }); }); });
+    savePlan(); closeOv(); renderBook(); renderPlan(); toast("削除しました");
+  }
+  function closeOv(){ $("#detailOv").classList.remove("on"); $("#formOv").classList.remove("on"); }
+
+  // ---- タブ ----
+  function switchTab(name){
+    $all("nav.tabs button").forEach(function(b){ b.classList.toggle("on", b.dataset.tab===name); });
+    $all(".tab").forEach(function(t){ t.classList.remove("on"); });
+    $("#tab-"+name).classList.add("on");
+    if(name==="shop") renderShop();
+    if(name==="book") renderBook();
+  }
+
+  // ---- イベント ----
+  function bind(){
+    $all("nav.tabs button").forEach(function(b){ b.addEventListener("click",function(){ switchTab(b.dataset.tab); }); });
+    $("#genBtn").addEventListener("click", genAll);
+    $("#regenAll").addEventListener("click", function(){ if(hasPlan()){ regenerateAll(function(){return true;}); toast("作り直しました"); } else genAll(); });
+
+    $("#servings").addEventListener("change", function(){ settings.servings=Number(this.value); save(LS.set,settings); renderPlan(); if($("#tab-shop").classList.contains("on")) renderShop(); });
+    $("#daysSel").addEventListener("change", function(){ setDays(Number(this.value)); });
+    $("#bands").addEventListener("change", function(){
+      var sel = $all("#bands input:checked").map(function(c){return c.value;});
+      if(!sel.length) sel=["夜"];           // 最低1つは選択
+      setBands(sel); syncControls();
+    });
+    $("#maxtime").addEventListener("change", function(){ settings.maxTime=this.value; save(LS.set,settings); });
+    $("#exclude").addEventListener("change", function(){ settings.exclude=$all("#exclude input:checked").map(function(c){return c.value;}); save(LS.set,settings); });
+    $("#calTarget").addEventListener("change", function(){ settings.calTarget=this.value; save(LS.set,settings); renderPlan(); });
+    $("#budget").addEventListener("input", function(){ settings.budget=this.value; save(LS.set,settings); if($("#tab-shop").classList.contains("on")) renderShop(); });
+    $("#dislike").addEventListener("change", function(){ settings.dislike=parseDislike(this.value); save(LS.set,settings); });
+
+    $("#copyPlan").addEventListener("click", function(){
+      if(!hasPlan()){ toast("先に献立を作ってください"); return; }
+      if(navigator.clipboard){ navigator.clipboard.writeText(planText()).then(function(){toast("献立をコピーしました");}); } else { toast("コピーできませんでした"); }
+    });
+    $("#exportBtn").addEventListener("click", doExport);
+    $("#importBtn").addEventListener("click", function(){ $("#importFile").click(); });
+    $("#importFile").addEventListener("change", function(){ if(this.files&&this.files[0]){ doImport(this.files[0]); this.value=""; } });
+
+    $("#days").addEventListener("click", function(e){
+      var t=e.target;
+      if(t.dataset.detail){ openDetail(t.dataset.detail); }
+      else if(t.dataset.lock){ var p=t.dataset.lock.split(","); ensureLocks(); var lk=locks[+p[0]][p[1]]; lk[p[2]]=!lk[p[2]]; savePlan(); renderPlan(); }
+      else if(t.dataset.reroll){ var p2=t.dataset.reroll.split(","); rerollBand(p2[1], function(d,role){ return d==p2[0] && role===p2[2]; }); }
+      else if(t.dataset.rerollband!=null){ var p3=t.dataset.rerollband.split(","); rerollBand(p3[1], function(d){ return d==p3[0]; }); }
+    });
+
+    $("#shopList").addEventListener("change", function(e){
+      if(e.target.dataset.check!=null){ var k=e.target.dataset.check;
+        if(e.target.checked) checked.add(k); else checked.delete(k);
+        e.target.closest("li").classList.toggle("done", e.target.checked);
+        save(LS.check, Array.from(checked));
+      }
+    });
+    $("#copyShop").addEventListener("click", function(){ var txt=shopText();
+      if(navigator.clipboard){ navigator.clipboard.writeText(txt).then(function(){toast("コピーしました");}); } else { toast("コピーできませんでした"); } });
+    $("#printShop").addEventListener("click", function(){ window.print(); });
+    $("#clearCheck").addEventListener("click", function(){ checked.clear(); save(LS.check,[]); renderShop(); });
+
+    $("#rbSearch").addEventListener("input", renderBook);
+    $("#rbSort").addEventListener("change", renderBook);
+    $("#favOnly").addEventListener("change", renderBook);
+    $("#hideNg").addEventListener("change", renderBook);
+    $("#rlist").addEventListener("click", function(e){
+      var f=e.target.closest("[data-fav]"), g=e.target.closest("[data-ng]");
+      if(f) toggleFav(f.dataset.fav); else if(g) toggleNg(g.dataset.ng);
+    });
+    $("#clearFilter").addEventListener("click", function(){ fltCat.clear(); fltGenre.clear(); fltCond.clear(); $("#rbSearch").value=""; $("#favOnly").checked=false; $("#hideNg").checked=true; renderFilterChips(); renderBook(); });
+    $("#addRecipe").addEventListener("click", function(){ openForm(null); });
+    $("#addIng").addEventListener("click", function(){ $("#fIng").appendChild(ingRow()); });
+    $("#addStep").addEventListener("click", function(){ $("#fSteps").appendChild(stepRow()); });
+    $("#saveRecipe").addEventListener("click", saveForm);
+    $("#delRecipe").addEventListener("click", deleteRecipe);
+
+    $all("[data-close]").forEach(function(b){ b.addEventListener("click", closeOv); });
+    $all(".ov").forEach(function(o){ o.addEventListener("click", function(e){ if(e.target===o) closeOv(); }); });
+    document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeOv(); });
+  }
+
+  // ---- 初期化 ----
+  function parseDislike(s){ return String(s||"").split(/[,、\s]+/).map(function(x){return x.trim();}).filter(Boolean); }
+  function syncControls(){
+    $("#servings").value = settings.servings;
+    $("#daysSel").value = String(dayCount());
+    $("#maxtime").value = settings.maxTime||"";
+    $("#calTarget").value = settings.calTarget||"";
+    $("#budget").value = settings.budget||"";
+    $("#dislike").value = (settings.dislike||[]).join(", ");
+    $all("#exclude input").forEach(function(c){ c.checked = settings.exclude.indexOf(c.value)>=0; });
+    $all("#bands input").forEach(function(c){ c.checked = settings.bands.indexOf(c.value)>=0; });
+  }
+  function init(){
+    // ジャンル除外チップ(生成用)
+    var exc=$("#exclude");
+    ["和食","洋食","中華","韓国","エスニック"].forEach(function(g){
+      var l=el("label",null,'<input type="checkbox" value="'+g+'">'+gen(g).s); exc.appendChild(l);
+    });
+    // 食事帯チップ(朝/昼/夜)
+    var bandBox=$("#bands");
+    BANDS.forEach(function(b){ var l=el("label",null,'<input type="checkbox" value="'+b+'">'+BAND_ICON[b]+BAND_LABEL[b]); bandBox.appendChild(l); });
+    restorePlan();
+    if(plan.length) settings.days = plan.length;   // 保存済み献立の日数に UI を合わせる
+    syncControls();
+    renderFilterChips();
+    buildCondCheckboxes();
+    bind();
+    ensureLocks(); renderPlan();
+  }
+  init();
+})();
+</script>
+</body>
+</html>
