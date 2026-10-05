@@ -463,10 +463,15 @@
   function esc(s){ return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
   function toast(m){ var t=$("#toast"); t.textContent=m; t.classList.add("on"); setTimeout(function(){t.classList.remove("on");},1800); }
   function scaleIng(r){ var f=settings.servings/(r.servings||2); return r.ingredients.map(function(i){ return {n:i.n, a:L.scaleAmount(i.a,f)}; }); }
-  function hashStr(s){ var h=0; for(var i=0;i<s.length;i++){ h=(h*31+s.charCodeAt(i))>>>0; } return h%100000; }
-  function imgSrc(r){ return "https://loremflickr.com/320/240/"+encodeURIComponent(r.img||"food")+"?lock="+hashStr(r.id); }
-  // 実写を <img> で表示。読込失敗(オフライン等)は onerror で img を消し、絵文字タイル(.fb)を見せる。
-  function photoInner(r){ return '<span class="fb">'+(r.emoji||"🍽️")+'</span><img src="'+imgSrc(r)+'" alt="'+esc(r.name)+'" loading="lazy" onerror="this.remove()">'; }
+  function imgSrc(r){ return "images/dishes/"+r.id+".jpg"; }
+  // ローカル写真(フリー素材サイトからダウンロード済み)を <img> で表示。
+  // hasPhoto=false(未取得 or 自作レシピ)は最初から <img> を出さず絵文字タイルのみ→404を出さない。
+  // hasPhoto=true でもファイル破損等があれば onerror で img を消し絵文字にフォールバック(保険)。
+  function photoInner(r){
+    var fb = '<span class="fb">'+(r.emoji||"🍽️")+'</span>';
+    if (!r.hasPhoto) return fb;
+    return fb + '<img src="'+imgSrc(r)+'" alt="'+esc(r.name)+'" loading="lazy" onerror="this.remove()">';
+  }
   function photoHTML(r, cls){ return '<div class="photo pg-'+gen(r.genre).c+(cls?" "+cls:"")+'">'+photoInner(r)+'</div>'; }
   function gchipHTML(r){ var g=gen(r.genre); return '<span class="gchip gen-'+g.c+'">'+g.s+'</span>'; }
 

@@ -398,37 +398,13 @@ const POP = {
 };
 RECIPES.forEach(function (r) { r.pop = POP[r.id] != null ? POP[r.id] : 40; });
 
-/* 実写写真用キーワード(img): LoremFlickr(実写CC写真)を料理名で引くための英語/ローマ字タグ。
- * index.html が https://loremflickr.com/320/240/<img> で画像を表示し、
- * オフライン/読込失敗時は emoji タイルにフォールバックする。未指定は "food"。 */
-const IMG = {
-  shogayaki:"pork", teriyaki:"teriyaki", shiozake:"salmon", sabamiso:"mackerel", nikujaga:"nikujaga",
-  karaage:"karaage", buriteri:"teriyaki", kakuni:"porkbelly", nikudofu:"tofu", chikuzenni:"simmered",
-  buridaikon:"fish", ajifry:"friedfish", chikinnanban:"friedchicken",
-  hamburg:"hamburgsteak", toritomato:"chicken", meuniere:"fish", porksaute:"porksteak", chickensaute:"chicken",
-  omurice:"omurice", curry:"curry", gratin:"gratin", ebifry:"shrimp", tonkatsu:"tonkatsu", korokke:"croquette",
-  mapo:"mapotofu", hoikoro:"pork", chinjao:"beef", ebichili:"shrimp", subuta:"sweetandsourpork",
-  yurinchi:"friedchicken", gyoza:"gyoza", torotama:"stirfry", shumai:"dimsum",
-  butakimchi:"kimchi", butakimchiharusame:"japchae", chijimi:"pajeon", pulgogi:"bulgogi", greencurry:"greencurry",
-  gyudon:"gyudon", oyakodon:"oyakodon", soborodon:"donburi", napolitan:"spaghetti", carbonara:"carbonara",
-  peperoncino:"pasta", doria:"gratin", pizzatoast:"pizza", chahan:"friedrice", yakisoba:"yakisoba",
-  bibimbap:"bibimbap", gapao:"riceplate", tacorice:"tacorice", onigiri:"onigiri", takikomi:"rice", bolognese:"spaghetti",
-  ohitashi:"spinach", gomaae:"spinach", kinpira:"kinpira", hijiki:"hijiki", kiriboshi:"radish",
-  dashimaki:"tamagoyaki", kabocha:"pumpkin", hiyayakko:"tofu", sunomono:"cucumber", agedashi:"tofu",
-  isobeage:"tempura", edamame:"edamame",
-  potesara:"potatosalad", kabochasalad:"pumpkin", macaronisalad:"macaroni", germanpotato:"potato",
-  coleslaw:"coleslaw", rapee:"carrot", greensalad:"salad", caprese:"caprese",
-  chukakyuri:"cucumber", boubou:"chicken", namuru:"beansprouts", moyashiitame:"beansprouts", harusamesalad:"salad",
-  asazuke:"pickles", kimchi:"kimchi", purin:"pudding", fruityogurt:"yogurt", shiratama:"mochi",
-  misosoup:"misosoup", tonjiru:"misosoup", kenchin:"soup", nameko:"misosoup", sumashi:"soup",
-  kakitama:"soup", asarijiru:"clam",
-  consomme:"soup", minestrone:"minestrone", corn:"cornsoup", clamchowder:"clamchowder", pumpkinpotage:"pumpkinsoup",
-  tamagosoup:"soup", wakamesoup:"soup", sanla:"soup", kimchichige:"kimchi",
-  medamayaki:"friedegg", hamegg:"friedegg", scrambledegg:"scrambledeggs", nattogohan:"natto", tamagokake:"rice",
-  buttertoast:"toast", frenchtoast:"frenchtoast", pancake:"pancake", ochazuke:"ochazuke", yakionigiri:"onigiri",
-  tamagosando:"sandwich", tunamelt:"toast", smoothie:"smoothie", hiyashichuka:"noodles", zarusoba:"soba", shirasudon:"donburi"
-};
-RECIPES.forEach(function (r) { r.img = IMG[r.id] || "food"; });
+/* ローカル写真: images/dishes/<id>.jpg が実在するレシピ id の一覧
+ * (フリー素材サイト Unsplash/Pexels/Pixabay からダウンロード済み)。
+ * 出典・ライセンスは images/sources.json と images/README.md を参照。
+ * ここに無い id(未取得、または自作レシピ custom_*)は写真を読み込まず
+ * 絵文字タイルのみ表示する(index.html の photoInner が hasPhoto を見て判定)。 */
+const PHOTO_IDS = ["shogayaki","teriyaki","shiozake","kakuni","buridaikon","chikinnanban","hamburg","toritomato","meuniere","porksaute","chickensaute","gratin","ebifry","tonkatsu","korokke","mapo","ebichili","subuta","gyoza","shumai","butakimchi","chijimi","pulgogi","greencurry","gyudon","oyakodon","omurice","curry","bolognese","napolitan","carbonara","peperoncino","doria","pizzatoast","chahan","yakisoba","bibimbap","gapao","onigiri","takikomi","dashimaki","kabocha","hiyayakko","edamame","potesara","kabochasalad","macaronisalad","germanpotato","coleslaw","rapee","greensalad","caprese","chukakyuri","namuru","harusamesalad","asazuke","kimchi","purin","fruityogurt","misosoup","tonjiru","asarijiru","minestrone","corn","clamchowder","pumpkinpotage","kimchichige","medamayaki","scrambledegg","nattogohan","buttertoast","frenchtoast","pancake","ochazuke","tamagosando","tunamelt","smoothie","zarusoba","shirasudon"];
+RECIPES.forEach(function (r) { r.hasPhoto = PHOTO_IDS.indexOf(r.id) >= 0; });
 
 /* 食事帯(meal): 朝/昼/夜 のうち、そのレシピが向く帯。将来の朝/昼/夜ごとの献立生成で使う。
  * 既定は cat から推定(副菜・汁物=朝昼夜、それ以外=昼夜)。MEAL はそれと異なるものだけ上書きする。 */

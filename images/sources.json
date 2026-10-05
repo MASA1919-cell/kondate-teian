@@ -1,0 +1,940 @@
+{
+  "shogayaki": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Gu Ko",
+    "sourceUrl": "https://www.pexels.com/photo/delicious-asian-pork-with-shredded-cabbage-37297736/",
+    "imageUrl": "https://images.pexels.com/photos/37297736/pexels-photo-37297736.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-04",
+    "note": "千切りキャベツと炒めた豚肉スライスの皿"
+  },
+  "teriyaki": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Marvin Sacdalan",
+    "sourceUrl": "https://www.pexels.com/photo/grilled-meat-on-white-ceramic-plate-13065183/",
+    "imageUrl": "https://images.pexels.com/photos/13065183/pexels-photo-13065183.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "照りのある鶏の照り焼き(スライス)を白皿に盛り、小ねぎと白ごまを散らした料理写真"
+  },
+  "shiozake": {
+    "status": "ok",
+    "site": "Unsplash",
+    "photographer": "Caroline Attwood",
+    "sourceUrl": "https://unsplash.com/photos/bpPTlXWTOvg",
+    "imageUrl": "https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?fm=jpg&q=80&w=600&auto=format&fit=crop",
+    "license": "Unsplash License",
+    "downloadedAt": "2026-08-05",
+    "note": "皮目を香ばしく焼いた鮭の切り身を、千切り野菜とライムとともに黒い皿に盛った写真"
+  },
+  "sabamiso": {
+    "status": "missing",
+    "note": "「mackerel miso」「saba misoni」等で検索したが、鯖の味噌煮に一致する写真が見つからず"
+  },
+  "nikujaga": {
+    "status": "missing",
+    "note": "「nikujaga」「japanese meat potato stew」等で検索したが、肉じゃがに一致する写真が見つからなかった"
+  },
+  "karaage": {
+    "status": "missing",
+    "note": "骨付きフライドチキン・丼で他の具材に埋もれている・縦長など、いずれも基準を満たさず却下"
+  },
+  "buriteri": {
+    "status": "missing",
+    "note": "「yellowtail teriyaki」「hamachi teriyaki」等で検索したが、ぶりの照り焼きに一致する写真が見つからなかった"
+  },
+  "kakuni": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Change C.C",
+    "sourceUrl": "https://www.pexels.com/photo/gourmet-braised-pork-belly-with-glazed-sauce-37800279/",
+    "imageUrl": "https://images.pexels.com/photos/37800279/pexels-photo-37800279.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "艶やかな濃い茶色のタレがかかった角切りの豚バラ肉を白皿に盛った写真"
+  },
+  "nikudofu": {
+    "status": "missing",
+    "note": "豆腐が写っていない鍋肉や無関係な写真しか見つからず"
+  },
+  "chikuzenni": {
+    "status": "missing",
+    "note": "洋風ローストチキンや東南アジア風カレーしか見つからず、筑前煮に一致する写真がなかった"
+  },
+  "buridaikon": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Gu Ko",
+    "sourceUrl": "https://www.pexels.com/photo/japanese-braised-fish-and-daikon-dish-on-table-37297762/",
+    "imageUrl": "https://images.pexels.com/photos/37297762/pexels-photo-37297762.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "魚の切り身と大根の輪切りを生姜と一緒に茶色い煮汁で煮込んだ写真"
+  },
+  "ajifry": {
+    "status": "missing",
+    "note": "「aji fry」に該当する画像が見つからず。パン粉をまとった平たいアジフライとは別料理ばかり"
+  },
+  "chikinnanban": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Đức Trung Đào",
+    "sourceUrl": "https://www.pexels.com/photo/nuggets-with-white-cabbage-and-a-dip-17692193/",
+    "imageUrl": "https://images.pexels.com/photos/17692193/pexels-photo-17692193.png?auto=compress&cs=tinysrgb&w=600&fm=jpg",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "衣をつけて揚げた鶏肉に甘酢だれと白いタルタルソースをかけ、千切りキャベツを添えた皿"
+  },
+  "hamburg": {
+    "status": "ok",
+    "site": "Unsplash",
+    "photographer": "Kouji Tsuru",
+    "sourceUrl": "https://unsplash.com/photos/VuirHlnf6sk",
+    "imageUrl": "https://images.unsplash.com/photo-1742626586945-47543e50fd82?fm=jpg&q=80&w=600&auto=format&fit=crop",
+    "license": "Unsplash License",
+    "downloadedAt": "2026-08-05",
+    "note": "丸いハンバーグステーキにデミグラスソースをかけ、目玉焼きと白ご飯を添えた和食器の一皿"
+  },
+  "toritomato": {
+    "status": "ok",
+    "site": "Unsplash",
+    "photographer": "Rodrigo Rodrigues",
+    "sourceUrl": "https://unsplash.com/photos/Wd00iFID5aI",
+    "imageUrl": "https://images.unsplash.com/photo-1748864221145-269b4a23a67e?fm=jpg&q=80&w=600&auto=format&fit=crop",
+    "license": "Unsplash License",
+    "downloadedAt": "2026-08-05",
+    "note": "焼き目のついた鶏肉とミニトマトを煮からめ、白い器に盛って青ねぎを飾った一皿"
+  },
+  "meuniere": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Huzaifa Bukhari",
+    "sourceUrl": "https://www.pexels.com/photo/plate-with-fried-fish-and-veggies-16845754/",
+    "imageUrl": "https://images.pexels.com/photos/16845754/pexels-photo-16845754.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "ソテーした白身魚の切り身にレモンを乗せ、クリームソースをかけて温野菜とポテトを添えた皿"
+  },
+  "porksaute": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Luca Luperto",
+    "sourceUrl": "https://www.pexels.com/photo/steak-served-in-a-restaurant-17216562/",
+    "imageUrl": "https://images.pexels.com/photos/17216562/pexels-photo-17216562.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "ソテーした豚肉の一枚にきのこソースとオイルをかけ、パセリを散らした白皿の一皿"
+  },
+  "chickensaute": {
+    "status": "ok",
+    "site": "Unsplash",
+    "photographer": "Robert Schneider",
+    "sourceUrl": "https://unsplash.com/photos/LPp5yyewomg",
+    "imageUrl": "https://images.unsplash.com/photo-1705775482755-586655a0aaf3?fm=jpg&q=80&w=600&auto=format&fit=crop",
+    "license": "Unsplash License",
+    "downloadedAt": "2026-08-05",
+    "note": "皮目を香ばしく焼いた鶏むね肉のソテーをマッシュポテトと温野菜とともに白皿に盛った一皿"
+  },
+  "gratin": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Sylwester Ficek",
+    "sourceUrl": "https://www.pexels.com/photo/cheesy-vegetable-baked-casserole-in-white-dish-32039641/",
+    "imageUrl": "https://images.pexels.com/photos/32039641/pexels-photo-32039641.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "楕円の耐熱皿でチーズをこんがり焼き色がつくまで焼いた野菜入りグラタン"
+  },
+  "ebifry": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Son Tung Tran",
+    "sourceUrl": "https://www.pexels.com/photo/deep-fried-breaded-shrimps-on-a-black-plate-7011610/",
+    "imageUrl": "https://images.pexels.com/photos/7011610/pexels-photo-7011610.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "尻尾付きのエビをパン粉衣でまっすぐに揚げ、ソースと野菜を添えた黒皿のエビフライ"
+  },
+  "tonkatsu": {
+    "status": "ok",
+    "site": "Unsplash",
+    "photographer": "Zhang Ziyu",
+    "sourceUrl": "https://unsplash.com/photos/crispy-pork-cutlet-with-shredded-cabbage-and-side-dish-iWECIywKdpo",
+    "imageUrl": "https://images.unsplash.com/photo-1770966666346-fbfde1f89a33?fm=jpg&q=80&w=600&auto=format&fit=crop",
+    "license": "Unsplash License",
+    "downloadedAt": "2026-08-05",
+    "note": "鉄板皿に盛られたスライス済みとんかつと、千切りキャベツ・小鉢の和定食"
+  },
+  "korokke": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Willians Huerta",
+    "sourceUrl": "https://www.pexels.com/photo/crispy-croquettes-on-white-plate-with-dipping-sauce-35017886/",
+    "imageUrl": "https://images.pexels.com/photos/35017886/pexels-photo-35017886.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "白い皿に並んだ揚げたてコロッケ4個と、にんじんの敷き野菜・ディップソース"
+  },
+  "mapo": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Giovanna Kamimura",
+    "sourceUrl": "https://www.pexels.com/photo/spicy-tofu-and-ground-pork-bowl-with-vegetables-31962200/",
+    "imageUrl": "https://images.pexels.com/photos/31962200/pexels-photo-31962200.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-04",
+    "note": "豆腐とひき肉、赤唐辛子・ねぎが乗ったボウル"
+  },
+  "hoikoro": {
+    "status": "missing",
+    "note": "キャベツ・豆板醤ダレを使う回鍋肉とは異なる料理だったため却下"
+  },
+  "chinjao": {
+    "status": "missing",
+    "note": "内容一致の候補は縦長で基準を満たさず、他は料理自体が不一致"
+  },
+  "ebichili": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Cats Coming",
+    "sourceUrl": "https://www.pexels.com/photo/garlic-shrimp-dish-699544/",
+    "imageUrl": "https://images.pexels.com/photos/699544/pexels-photo-699544.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "つやのある赤いチリソースをまとったむき海老を箸でつまむクローズアップ"
+  },
+  "subuta": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Yang Hao",
+    "sourceUrl": "https://www.pexels.com/photo/cooked-food-on-white-ceramic-plate-10692545/",
+    "imageUrl": "https://images.pexels.com/photos/10692545/pexels-photo-10692545.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "パイナップルとピーマンを添えた甘酢あんかけの肉団子(酢豚スタイル)"
+  },
+  "yurinchi": {
+    "status": "missing",
+    "note": "油淋鶏特有の甘酢ネギだれの鶏肉とは異なる候補ばかりで却下"
+  },
+  "gyoza": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Anna Tarazevich",
+    "sourceUrl": "https://www.pexels.com/photo/close-up-photo-of-crispy-dumplings-on-a-ceramic-plate-7287716/",
+    "imageUrl": "https://images.pexels.com/photos/7287716/pexels-photo-7287716.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-04",
+    "note": "焼き色のついた焼き餃子、ねぎ・ごま散らし"
+  },
+  "torotama": {
+    "status": "missing",
+    "note": "豚肉・野菜・とろとろ卵を一緒に炒め合わせた料理の候補が見つからず"
+  },
+  "shumai": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Change C.C",
+    "sourceUrl": "https://www.pexels.com/photo/close-up-of-steamed-shumai-in-bamboo-steamer-32393811/",
+    "imageUrl": "https://images.pexels.com/photos/32393811/pexels-photo-32393811.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "エビ・カニ風の具が乗ったシュウマイ3個が蒸籠に並ぶ"
+  },
+  "butakimchi": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Theodore Nguyen",
+    "sourceUrl": "https://www.pexels.com/photo/delicious-korean-stir-fried-pork-dish-32087659/",
+    "imageUrl": "https://images.pexels.com/photos/32087659/pexels-photo-32087659.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "赤いキムチと豚肉を炒めた一皿(手前にキムチの小鉢も見える韓国料理店の食卓)"
+  },
+  "butakimchiharusame": {
+    "status": "missing",
+    "note": "春雨が写っていない、または豚肉が確認できない候補ばかりで不一致"
+  },
+  "chijimi": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "FOX ^.ᆽ.^= ∫",
+    "sourceUrl": "https://www.pexels.com/photo/delicious-pajeon-on-a-plate-12913663/",
+    "imageUrl": "https://images.pexels.com/photos/12913663/pexels-photo-12913663.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "焼き目のついた韓国風チヂミ(ペチジミ)がプレートに盛られ、タレと一緒に食卓に置かれている"
+  },
+  "pulgogi": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Luis Becerra Fotógrafo",
+    "sourceUrl": "https://www.pexels.com/photo/top-view-of-a-bulgogi-beef-bowl-5774000/",
+    "imageUrl": "https://images.pexels.com/photos/5774000/pexels-photo-5774000.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "甘辛く炒め煮したプルコギ(牛肉と野菜)がご飯の上に盛られ、上から俯瞰で撮影されている"
+  },
+  "greencurry": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Sai Kuen Leung",
+    "sourceUrl": "https://www.pexels.com/photo/delicious-thai-green-curry-with-vegetables-31029754/",
+    "imageUrl": "https://images.pexels.com/photos/31029754/pexels-photo-31029754.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "黒いボウルに入った緑色のグリーンカレー、ナス・唐辛子・バジルが見える"
+  },
+  "gyudon": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Markus Winkler",
+    "sourceUrl": "https://www.pexels.com/photo/beef-topped-with-ginger-served-in-bowl-3799314/",
+    "imageUrl": "https://images.pexels.com/photos/3799314/pexels-photo-3799314.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "牛丼、ご飯の上に甘辛く煮た牛肉と紅生姜がたっぷり乗っている"
+  },
+  "oyakodon": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Gu Ko",
+    "sourceUrl": "https://www.pexels.com/photo/delicious-japanese-oyakodon-bowl-with-chicken-37297724/",
+    "imageUrl": "https://images.pexels.com/photos/37297724/pexels-photo-37297724.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "親子丼、鶏肉がふわとろの卵とじで包まれご飯の上に盛られている(木製テーブル)"
+  },
+  "soborodon": {
+    "status": "missing",
+    "note": "鶏そぼろ+炒り卵の2色丼が確認できず不一致"
+  },
+  "omurice": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Markus Winkler",
+    "sourceUrl": "https://www.pexels.com/photo/meal-on-plate-19902239/",
+    "imageUrl": "https://images.pexels.com/photos/19902239/pexels-photo-19902239.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "ケチャップライスをふわとろ卵で包み、デミグラスソースをかけてグリーンピースを飾った定番のオムライス"
+  },
+  "curry": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Change C.C",
+    "sourceUrl": "https://www.pexels.com/photo/delicious-japanese-curry-rice-with-pickles-30700759/",
+    "imageUrl": "https://images.pexels.com/photos/30700759/pexels-photo-30700759.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-04",
+    "note": "茶色いカレーソースとご飯、漬物・スープ付きの盆"
+  },
+  "bolognese": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "mehmetakifarts",
+    "sourceUrl": "https://www.pexels.com/photo/traditional-pasta-spaghetti-with-bolognese-sauce-in-gray-ceramic-plate-14930646/",
+    "imageUrl": "https://images.pexels.com/photos/14930646/pexels-photo-14930646.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "黒い皿に盛られた、ミートソースとパルメザンチーズを乗せたスパゲッティボロネーゼ"
+  },
+  "napolitan": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Alejandro Aznar",
+    "sourceUrl": "https://www.pexels.com/photo/delicious-spaghetti-with-peppers-and-sausages-29269188/",
+    "imageUrl": "https://images.pexels.com/photos/29269188/pexels-photo-29269188.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "ケチャップ味の赤いナポリタン、輪切りソーセージとピーマンが混ぜ込まれている"
+  },
+  "carbonara": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Adriano Bragi",
+    "sourceUrl": "https://www.pexels.com/photo/delicious-creamy-spaghetti-carbonara-dish-31779533/",
+    "imageUrl": "https://images.pexels.com/photos/31779533/pexels-photo-31779533.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "クリーミーなカルボナーラ、パンチェッタ/ベーコンと黒コショウが見える黒い皿盛り"
+  },
+  "peperoncino": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Satyam Verma",
+    "sourceUrl": "https://www.pexels.com/photo/plate-with-delicious-spaghetti-with-garlic-in-restaurant-4431588/",
+    "imageUrl": "https://images.pexels.com/photos/4431588/pexels-photo-4431588.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "ペペロンチーノ、白皿にトングで巻かれたパスタ、ニンニクと唐辛子フレークが散っている"
+  },
+  "doria": {
+    "status": "ok",
+    "site": "Unsplash",
+    "photographer": "Some Tale",
+    "sourceUrl": "https://unsplash.com/photos/a-casserole-dish-with-cheese-and-parsley-lqRfdLcZm_w",
+    "imageUrl": "https://images.unsplash.com/photo-1645453014403-4ad5170a386c?fm=jpg&q=80&w=600&h=400&fit=crop&auto=format",
+    "license": "Unsplash License",
+    "downloadedAt": "2026-08-05",
+    "note": "オーバル型グラタン皿にクリームソースとチーズを乗せてこんがり焼いた、ドリアそのものの見た目"
+  },
+  "pizzatoast": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Piotr Arnoldes",
+    "sourceUrl": "https://www.pexels.com/photo/tasty-toast-with-pepperoni-slices-on-cutting-board-6493569/",
+    "imageUrl": "https://images.pexels.com/photos/6493569/pexels-photo-6493569.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "トーストしたパンにトマトソース・サラミ・溶けたチーズを乗せたピザトースト"
+  },
+  "chahan": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Trista Chen",
+    "sourceUrl": "https://www.pexels.com/photo/cooked-rice-on-black-ceramic-plate-723198/",
+    "imageUrl": "https://images.pexels.com/photos/723198/pexels-photo-723198.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "黒い皿に盛られた、ねぎを散らした醤油味のチャーハン"
+  },
+  "yakisoba": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Yang Hao",
+    "sourceUrl": "https://www.pexels.com/photo/noodle-dish-on-black-sizzling-plate-10692546/",
+    "imageUrl": "https://images.pexels.com/photos/10692546/pexels-photo-10692546.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "鉄板皿で提供された、肉・キャベツ・もやし入りの焼きそば"
+  },
+  "bibimbap": {
+    "status": "ok",
+    "site": "Unsplash",
+    "photographer": "Dmitry Pavlovsky",
+    "sourceUrl": "https://unsplash.com/photos/korean-bibimbap-with-side-dishes-is-served-SbHulgzS_eo",
+    "imageUrl": "https://images.unsplash.com/photo-1741295017668-c8132acd6fc0?fm=jpg&q=80&w=600&auto=format&fit=crop",
+    "license": "Unsplash License",
+    "downloadedAt": "2026-08-04",
+    "note": "石鍋のビビンバ、ナムル・肉・卵黄、キムチの小皿"
+  },
+  "gapao": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Markus Winkler",
+    "sourceUrl": "https://www.pexels.com/photo/stir-fried-thai-basil-with-minced-pork-and-rice-on-oval-ceramic-plate-12100417/",
+    "imageUrl": "https://images.pexels.com/photos/12100417/pexels-photo-12100417.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "白いご飯とバジル入り挽き肉炒めを並べたガパオライス風の一皿"
+  },
+  "tacorice": {
+    "status": "missing",
+    "note": "沖縄のタコライス(一皿盛り)に該当する写真を発見できず。メキシコのタコス単品ばかり"
+  },
+  "onigiri": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Airam Dato-on",
+    "sourceUrl": "https://www.pexels.com/photo/fresh-onigiri-rice-balls-on-wooden-board-30874703/",
+    "imageUrl": "https://images.pexels.com/photos/30874703/pexels-photo-30874703.jpeg?auto=compress&cs=tinysrgb&w=600&h=450&fit=crop",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "木の board に並んだ、海苔を巻いた三角形の白いご飯のおにぎり3個"
+  },
+  "takikomi": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Change C.C",
+    "sourceUrl": "https://www.pexels.com/photo/steamed-rice-with-oysters-and-green-peas-36694553/",
+    "imageUrl": "https://images.pexels.com/photos/36694553/pexels-photo-36694553.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "炊飯器の内釜で、牡蠣・グリーンピース・玉ねぎを炊き込んだ混ぜご飯"
+  },
+  "ohitashi": {
+    "status": "missing",
+    "note": "青菜がほうれん草と断定できず、醤油だれの和風おひたしとして自信を持って判定できなかった"
+  },
+  "gomaae": {
+    "status": "missing",
+    "note": "ゴマではなくニンニクを使った韓国風ナムルの可能性が高く自信が持てないため却下"
+  },
+  "kinpira": {
+    "status": "missing",
+    "note": "きんぴらに一致する候補が見つからず。goboは無関係の写真ばかり"
+  },
+  "hijiki": {
+    "status": "missing",
+    "note": "ひじきの黒い煮物に該当する候補が見つからず"
+  },
+  "kiriboshi": {
+    "status": "missing",
+    "note": "切り干し大根の煮物に相当する写真がUnsplash/Pexelsに見当たらず(乾物の和風副菜は西欧圏ストックに乏しい)"
+  },
+  "dashimaki": {
+    "status": "ok",
+    "site": "Unsplash",
+    "photographer": "note thanun",
+    "sourceUrl": "https://unsplash.com/photos/tamagoyaki-and-pickled-ginger-on-a-plate-X0pULv2Vyeg",
+    "imageUrl": "https://images.unsplash.com/photo-1763469026635-1fc183540435?fm=jpg&q=80&w=600&auto=format&fit=crop",
+    "license": "Unsplash License",
+    "downloadedAt": "2026-08-04",
+    "note": "だし巻き卵のブロックと紅生姜"
+  },
+  "kabocha": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Gu Ko",
+    "sourceUrl": "https://www.pexels.com/photo/japanese-kabocha-squash-dish-on-ceramic-plate-37297730/",
+    "imageUrl": "https://images.pexels.com/photos/37297730/pexels-photo-37297730.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "陶器の小皿に盛られた、皮付きオレンジ色のかぼちゃの煮物"
+  },
+  "hiyayakko": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Polina Tankilevitch",
+    "sourceUrl": "https://www.pexels.com/photo/sliced-tofu-with-sesame-seeds-on-white-plate-4518604/",
+    "imageUrl": "https://images.pexels.com/photos/4518604/pexels-photo-4518604.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "角切りの豆腐に醤油とごまをかけた冷奴風の一皿"
+  },
+  "sunomono": {
+    "status": "missing",
+    "note": "わかめのみでキュウリが写っていない、または具材が違う候補ばかりで却下"
+  },
+  "agedashi": {
+    "status": "missing",
+    "note": "出汁あんかけがなく、形状も揚げ出し豆腐と断定できず却下"
+  },
+  "isobeage": {
+    "status": "missing",
+    "note": "ちくわの磯辺揚げに該当する候補が一件も見つからず"
+  },
+  "edamame": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "khezez | خزاز",
+    "sourceUrl": "https://www.pexels.com/photo/bowl-of-fresh-edamame-with-salt-on-wooden-table-29935499/",
+    "imageUrl": "https://images.pexels.com/photos/29935499/pexels-photo-29935499.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "塩をふった枝豆のさやが器に盛られ、木目のテーブルに置かれている"
+  },
+  "potesara": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Lydia Burkert",
+    "sourceUrl": "https://www.pexels.com/photo/delicious-summer-potato-salad-on-outdoor-table-38728669/",
+    "imageUrl": "https://images.pexels.com/photos/38728669/pexels-photo-38728669.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "きゅうり・ハムらしき具とマヨネーズで和えたポテトサラダが白いボウルに盛られている"
+  },
+  "kabochasalad": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Gu Ko",
+    "sourceUrl": "https://www.pexels.com/photo/delicious-asian-inspired-pumpkin-dish-in-ceramic-bowl-37297741/",
+    "imageUrl": "https://images.pexels.com/photos/37297741/pexels-photo-37297741.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "陶器の皿に盛られた、かぼちゃを潰して和えたマッシュ状の一品(かぼちゃサラダらしい見た目)"
+  },
+  "macaronisalad": {
+    "status": "ok",
+    "site": "Pixabay",
+    "photographer": "Pixabay contributor",
+    "sourceUrl": "https://pixabay.com/photos/macaroni-salad-pasta-elbow-macaroni-6050040/",
+    "imageUrl": "https://cdn.pixabay.com/photo/2021/02/25/20/31/macaroni-salad-6050040_640.jpg",
+    "license": "Pixabay Content License",
+    "downloadedAt": "2026-08-05",
+    "note": "白いボウルに盛られたマカロニサラダ、トマト・ほうれん草・ツナ(または鶏肉)入り"
+  },
+  "germanpotato": {
+    "status": "ok",
+    "site": "Pixabay",
+    "photographer": "Pixabay contributor",
+    "sourceUrl": "https://pixabay.com/photos/fried-potatoes-bacon-food-eat-3234896/",
+    "imageUrl": "https://cdn.pixabay.com/photo/2018/03/17/19/22/fried-potatoes-3234896_640.jpg",
+    "license": "Pixabay Content License",
+    "downloadedAt": "2026-08-05",
+    "note": "皿に盛られた角切りじゃがいもとベーコンの炒め物、スプーン添え"
+  },
+  "coleslaw": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Engin Akyurt",
+    "sourceUrl": "https://www.pexels.com/photo/vegetable-salad-on-white-ceramic-bowl-7362673/",
+    "imageUrl": "https://images.pexels.com/photos/7362673/pexels-photo-7362673.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "白いボウルに盛られた紫キャベツ入りのクリーミーなコールスロー"
+  },
+  "rapee": {
+    "status": "ok",
+    "site": "Pixabay",
+    "photographer": "Pixabay contributor",
+    "sourceUrl": "https://pixabay.com/photos/carrot-vegetable-salad-food-meal-6292315/",
+    "imageUrl": "https://cdn.pixabay.com/photo/2021/05/29/01/53/carrot-6292315_640.jpg",
+    "license": "Pixabay Content License",
+    "downloadedAt": "2026-08-05",
+    "note": "白い皿に盛られた千切り人参とトマト・紫玉ねぎ・青唐辛子のサラダ"
+  },
+  "greensalad": {
+    "status": "ok",
+    "site": "Pixabay",
+    "photographer": "Pixabay contributor",
+    "sourceUrl": "https://pixabay.com/photos/salad-fresh-organic-food-diet-374173/",
+    "imageUrl": "https://cdn.pixabay.com/photo/2014/06/21/21/00/salad-374173_640.jpg",
+    "license": "Pixabay Content License",
+    "downloadedAt": "2026-08-05",
+    "note": "白い皿に盛られたレタス・トマト・フェタチーズ・りんご・ラズベリーのグリーンサラダ"
+  },
+  "caprese": {
+    "status": "ok",
+    "site": "Pixabay",
+    "photographer": "Pixabay contributor",
+    "sourceUrl": "https://pixabay.com/photos/tomato-and-mozzarella-salad-basil-8829/",
+    "imageUrl": "https://cdn.pixabay.com/photo/2011/08/17/14/31/tomato-and-mozzarella-salad-8829_640.jpg",
+    "license": "Pixabay Content License",
+    "downloadedAt": "2026-08-05",
+    "note": "トマトとモッツァレラチーズにバジルを添えたカプレーゼのクローズアップ"
+  },
+  "chukakyuri": {
+    "status": "ok",
+    "site": "Pixabay",
+    "photographer": "Pixabay contributor",
+    "sourceUrl": "https://pixabay.com/photos/cucumber-salad-cucumbers-key-meal-5215/",
+    "imageUrl": "https://cdn.pixabay.com/photo/2011/03/15/19/54/cucumber-salad-5215_640.jpg",
+    "license": "Pixabay Content License",
+    "downloadedAt": "2026-08-05",
+    "note": "茶色いボウルに盛られた乱切りきゅうりの中華風漬け"
+  },
+  "boubou": {
+    "status": "missing",
+    "note": "バンバンジー(茹で鶏+胡麻だれ+きゅうり)に合致する写真が見つからず"
+  },
+  "namuru": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "makafood",
+    "sourceUrl": "https://www.pexels.com/photo/cooked-bean-sprouts-on-a-black-bowl-8954067/",
+    "imageUrl": "https://images.pexels.com/photos/8954067/pexels-photo-8954067.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "黒いボウルに盛られたナムル風の豆もやし(ごま油和え小鉢の見た目)"
+  },
+  "moyashiitame": {
+    "status": "missing",
+    "note": "日本の醤油炒めもやしに一致する完成品の候補が見つからず"
+  },
+  "harusamesalad": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "makafood",
+    "sourceUrl": "https://www.pexels.com/photo/pasta-on-white-ceramic-bowl-8935153/",
+    "imageUrl": "https://images.pexels.com/photos/8935153/pexels-photo-8935153.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "白い角皿に盛られた春雨に人参・青ねぎをのせた一品"
+  },
+  "asazuke": {
+    "status": "ok",
+    "site": "Unsplash",
+    "photographer": "Daniel",
+    "sourceUrl": "https://unsplash.com/photos/8NVYJO199Bg",
+    "imageUrl": "https://images.unsplash.com/photo-1708388064990-e62aa000d2d7?fm=jpg&q=80&w=600&auto=format&fit=crop",
+    "license": "Unsplash License",
+    "downloadedAt": "2026-08-05",
+    "note": "金属鉢に渦巻き状に並べられた塩もみきゅうりの薄切り"
+  },
+  "kimchi": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "John Joshua Mejia Jose",
+    "sourceUrl": "https://www.pexels.com/photo/traditional-korean-kimchi-in-ceramic-bowl-38141845/",
+    "imageUrl": "https://images.pexels.com/photos/38141845/pexels-photo-38141845.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "木のテーブルの上、白い小鉢に盛られた赤い白菜キムチ"
+  },
+  "purin": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Gu Ko",
+    "sourceUrl": "https://www.pexels.com/photo/delicious-caramel-flan-with-spoon-in-cafe-31872297/",
+    "imageUrl": "https://images.pexels.com/photos/31872297/pexels-photo-31872297.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "皿の上でカラメルソースをまとったカスタードプリンにスプーンを入れているところ"
+  },
+  "fruityogurt": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Nicola Barts",
+    "sourceUrl": "https://www.pexels.com/photo/fresh-fruits-with-yogurt-in-clear-glass-7937483/",
+    "imageUrl": "https://images.pexels.com/photos/7937483/pexels-photo-7937483.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "透明グラス3個に層状のヨーグルトとグラノーラ、キウイ・ブラックベリー・いちごを盛った3種のパルフェ"
+  },
+  "shiratama": {
+    "status": "missing",
+    "note": "白玉あずき(白い団子+あずき)の写真が見つからず、色違いの台湾風団子ばかり"
+  },
+  "misosoup": {
+    "status": "ok",
+    "site": "Unsplash",
+    "photographer": "note thanun",
+    "sourceUrl": "https://unsplash.com/photos/bowl-of-miso-soup-with-tofu-and-seaweed-HQNhc58_6mI",
+    "imageUrl": "https://images.unsplash.com/photo-1763470260582-894ae15f43bb?fm=jpg&q=80&w=600&auto=format&fit=crop",
+    "license": "Unsplash License",
+    "downloadedAt": "2026-08-04",
+    "note": "木の椀の味噌汁、豆腐とわかめ・ねぎ"
+  },
+  "tonjiru": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Gu Ko",
+    "sourceUrl": "https://www.pexels.com/photo/traditional-japanese-soup-with-chopsticks-in-tokyo-31872337/",
+    "imageUrl": "https://images.pexels.com/photos/31872337/pexels-photo-31872337.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-05",
+    "note": "木製の椀に入った味噌汁、豚バラ肉・人参・しいたけが見え箸でつまんでいる"
+  },
+  "kenchin": {
+    "status": "missing",
+    "note": "具沢山の根菜が見える純日本風けんちん汁が見つからず"
+  },
+  "nameko": {
+    "status": "missing",
+    "note": "なめこ特有の見た目の味噌汁が見つからず"
+  },
+  "sumashi": {
+    "status": "missing",
+    "note": "具の少ない透明な和風だし汁の写真が見つからなかった"
+  },
+  "kakitama": {
+    "status": "missing",
+    "note": "ふわっと溶き卵の和風だしスープに一致する候補がなかった"
+  },
+  "asarijiru": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Gu Ko",
+    "sourceUrl": "https://www.pexels.com/photo/traditional-japanese-meal-with-clam-soup-32027932/",
+    "imageUrl": "https://images.pexels.com/photos/32027932/pexels-photo-32027932.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-06",
+    "note": "漆塗りの椀に入ったあさりの味噌汁(不透明な茶色い出汁に殻付きあさり)を箸でつまんでいる写真"
+  },
+  "consomme": {
+    "status": "missing",
+    "note": "色・構図・画角のいずれかが基準を満たさず却下"
+  },
+  "minestrone": {
+    "status": "ok",
+    "site": "Pixabay",
+    "photographer": "Pixabay contributor",
+    "sourceUrl": "https://pixabay.com/photos/minestrone-soup-6714901/",
+    "imageUrl": "https://cdn.pixabay.com/photo/2021/10/16/12/12/minestrone-soup-6714901_640.jpg",
+    "license": "Pixabay License",
+    "downloadedAt": "2026-08-06",
+    "note": "トマトベースの具沢山スープにアネッリ状のパスタと角切り野菜が入ったミネストローネ"
+  },
+  "corn": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Max Griss",
+    "sourceUrl": "https://www.pexels.com/photo/a-mouthwatering-corn-soup-6693174/",
+    "imageUrl": "https://images.pexels.com/photos/6693174/pexels-photo-6693174.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-06",
+    "note": "白い皿に盛られたクリーミーなコーンポタージュ。コーン粒・クルトン・パセリのトッピング"
+  },
+  "clamchowder": {
+    "status": "ok",
+    "site": "Pixabay",
+    "photographer": "Pixabay contributor",
+    "sourceUrl": "https://pixabay.com/photos/clam-chowder-10072629/",
+    "imageUrl": "https://cdn.pixabay.com/photo/2026/01/17/08/33/clam-chowder-10072629_640.jpg",
+    "license": "Pixabay License",
+    "downloadedAt": "2026-08-06",
+    "note": "白い器に入ったクリーミーな乳白色のクラムチャウダーをスプーンですくっている写真"
+  },
+  "pumpkinpotage": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Katrin Bolovtsova",
+    "sourceUrl": "https://www.pexels.com/photo/a-close-up-shot-of-a-bowl-of-pumpkin-soup-5662122/",
+    "imageUrl": "https://images.pexels.com/photos/5662122/pexels-photo-5662122.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-06",
+    "note": "木製テーブルの陶器ボウルに入った鮮やかなオレンジ色のかぼちゃポタージュ"
+  },
+  "tamagosoup": {
+    "status": "missing",
+    "note": "透明〜白濁したスープに卵のリボンという見た目に自信を持てる候補がなかった"
+  },
+  "wakamesoup": {
+    "status": "missing",
+    "note": "中華風の透明〜白濁したわかめスープに該当する写真が見つからず"
+  },
+  "sanla": {
+    "status": "missing",
+    "note": "3サイトとも縦長構図か別料理のみでヒットせず却下"
+  },
+  "kimchichige": {
+    "status": "ok",
+    "site": "Unsplash",
+    "photographer": "rawkkim",
+    "sourceUrl": "https://unsplash.com/photos/1_SenAyTAXg",
+    "imageUrl": "https://images.unsplash.com/photo-1760228865341-675704c22a5b?fm=jpg&q=80&w=600&auto=format&fit=crop",
+    "license": "Unsplash License",
+    "downloadedAt": "2026-08-06",
+    "note": "鍋に入った赤い辛いスープに豆腐と青ねぎが乗ったキムチチゲのクローズアップ"
+  },
+  "medamayaki": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "cottonbro studio",
+    "sourceUrl": "https://www.pexels.com/photo/a-smiley-on-a-plate-made-of-sunny-side-up-eggs-and-a-sausage-6651737/",
+    "imageUrl": "https://images.pexels.com/photos/6651737/pexels-photo-6651737.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-06",
+    "note": "目玉焼き2個とソーセージ1本がピンクの皿に乗った写真"
+  },
+  "hamegg": {
+    "status": "missing",
+    "note": "シンプルなハムエッグに一致する横長写真が見つからず却下"
+  },
+  "scrambledegg": {
+    "status": "ok",
+    "site": "Unsplash",
+    "photographer": "Imad 786",
+    "sourceUrl": "https://unsplash.com/photos/qla1_604R4c",
+    "imageUrl": "https://images.unsplash.com/photo-1687630433865-f86f07be989a?fm=jpg&q=80&w=600&h=450&auto=format&fit=crop&crop=top",
+    "license": "Unsplash License",
+    "downloadedAt": "2026-08-06",
+    "note": "白いボウルに盛られたパセリ散らしのスクランブルエッグとフォーク"
+  },
+  "nattogohan": {
+    "status": "ok",
+    "site": "Pixabay",
+    "photographer": "Japan-coutry-movie",
+    "sourceUrl": "https://pixabay.com/photos/natto-food-japan-japanese-food-7048951/",
+    "imageUrl": "https://cdn.pixabay.com/photo/2022/03/05/11/26/natto-7048951_640.jpg",
+    "license": "Pixabay License",
+    "downloadedAt": "2026-08-06",
+    "note": "藍色の茶碗に盛った白いご飯の上に糸を引く納豆をのせた納豆ご飯"
+  },
+  "tamagokake": {
+    "status": "missing",
+    "note": "生卵をご飯にかけた写真が見つからず却下"
+  },
+  "buttertoast": {
+    "status": "ok",
+    "site": "Unsplash",
+    "photographer": "Chefitt",
+    "sourceUrl": "https://unsplash.com/photos/qqJTsDbUzMk",
+    "imageUrl": "https://images.unsplash.com/photo-1785502108414-a56c1fff15ab?fm=jpg&q=80&w=600&h=450&auto=format&fit=crop&crop=entropy",
+    "license": "Unsplash License",
+    "downloadedAt": "2026-08-06",
+    "note": "焼き色のついたトースト4枚にバターが溶けて広がっている俯瞰クローズアップ"
+  },
+  "frenchtoast": {
+    "status": "ok",
+    "site": "Unsplash",
+    "photographer": "Nahima Aparicio",
+    "sourceUrl": "https://unsplash.com/photos/HO7RFYSsFfw",
+    "imageUrl": "https://images.unsplash.com/photo-1646678257402-8a0ed0d2d14e?fm=jpg&q=80&w=600&auto=format&fit=crop",
+    "license": "Unsplash License",
+    "downloadedAt": "2026-08-06",
+    "note": "白い皿に重ねたフレンチトーストにベリー類と粉砂糖をのせたレストラン風の一皿"
+  },
+  "pancake": {
+    "status": "ok",
+    "site": "Unsplash",
+    "photographer": "Stavros Papadimitriou",
+    "sourceUrl": "https://unsplash.com/photos/a-stack-of-pancakes-with-syrup-and-berries-on-a-plate-UBvMCte4IIo",
+    "imageUrl": "https://images.unsplash.com/photo-1694458557352-4b8ca744dea7?fm=jpg&q=80&w=600&auto=format&fit=crop",
+    "license": "Unsplash License",
+    "downloadedAt": "2026-08-04",
+    "note": "ベリーとシロップのかかったパンケーキスタック"
+  },
+  "ochazuke": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Tinny HU",
+    "sourceUrl": "https://www.pexels.com/photo/pouring-of-hot-water-on-a-savory-meal-11643504/",
+    "imageUrl": "https://images.pexels.com/photos/11643504/pexels-photo-11643504.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-06",
+    "note": "ご飯と具材が入った丼に急須から熱い出汁またはお茶を注いでいるところ"
+  },
+  "yakionigiri": {
+    "status": "missing",
+    "note": "焼き色・醤油だれ付きの三角おにぎりに該当する写真が見つからず"
+  },
+  "tamagosando": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "대정 김 (Daejeung Kim)",
+    "sourceUrl": "https://www.pexels.com/photo/12148858/",
+    "imageUrl": "https://images.pexels.com/photos/12148858/pexels-photo-12148858.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-06",
+    "note": "三角にカットされた白い食パンに黄色いふわふわの卵サラダを挟んだサンドイッチが4切れ皿に並んでいる"
+  },
+  "tunamelt": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Inna Rabotyagina",
+    "sourceUrl": "https://www.pexels.com/photo/9180209/",
+    "imageUrl": "https://images.pexels.com/photos/9180209/pexels-photo-9180209.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-06",
+    "note": "グリルで焼き目をつけたパンにツナと青菜の具材を挟んだサンドイッチが積み重なって皿に盛られている"
+  },
+  "smoothie": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "Lisa (fotios-photos)",
+    "sourceUrl": "https://www.pexels.com/photo/hand-holding-glass-of-green-smoothie-with-straw-17890560/",
+    "imageUrl": "https://images.pexels.com/photos/17890560/pexels-photo-17890560.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-04",
+    "note": "手に持ったグラスの緑のスムージー、ストロー付き"
+  },
+  "hiyashichuka": {
+    "status": "missing",
+    "note": "錦糸卵・ハム・きゅうりの彩り盛り付けに一致する写真が見つからず"
+  },
+  "zarusoba": {
+    "status": "ok",
+    "site": "Pexels",
+    "photographer": "minami okamoto",
+    "sourceUrl": "https://www.pexels.com/photo/26727317/",
+    "imageUrl": "https://images.pexels.com/photos/26727317/pexels-photo-26727317.jpeg?auto=compress&cs=tinysrgb&w=600",
+    "license": "Pexels License",
+    "downloadedAt": "2026-08-06",
+    "note": "竹ざるに盛った蕎麦に刻み海苔をのせ、横につけ汁の器が添えられている"
+  },
+  "shirasudon": {
+    "status": "ok",
+    "site": "Pixabay",
+    "photographer": "K2-Kaji",
+    "sourceUrl": "https://pixabay.com/photos/shirasu-fish-food-japan-1404989/",
+    "imageUrl": "https://cdn.pixabay.com/photo/2016/05/20/12/42/shirasu-1404989_640.jpg",
+    "license": "Pixabay License",
+    "downloadedAt": "2026-08-06",
+    "note": "生しらすを丼にたっぷり盛り、生姜と青ねぎを添えたアップ写真"
+  }
+}
