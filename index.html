@@ -515,10 +515,23 @@
       var regen = shouldRegen(d,role) && !lockedFlag;
       lk[d][role] = !regen;
     }); }
-    var week = L.generateWeek(allRecipes(), Object.assign(opts(band), { current:current, locks:lk }));
+    // 他の食事帯に入っている料理を日ごとに渡し、同じ日に同じ料理が重ならないようにする。
+    var exclude = plan.map(function(day){
+      var ids=[];
+      settings.bands.forEach(function(b){ if(b!==band && day && day[b]) ["main","side","soup"].forEach(function(role){ if(day[b][role]) ids.push(day[b][role].id); }); });
+      return ids;
+    });
+    var week = L.generateWeek(allRecipes(), Object.assign(opts(band), { current:current, locks:lk, exclude:exclude }));
     plan.forEach(function(day,d){ day[band] = week[d]; });
   }
-  function regenerateAll(shouldRegen){ settings.bands.forEach(function(b){ regenerateBand(b, shouldRegen); }); savePlan(); renderPlan(); }
+  function regenerateAll(shouldRegen){
+    ensureLocks();
+    // 作り直す枠を先に空けておく。残すと、後で入れ替わる古い料理まで先の帯の除外対象になってしまう。
+    plan.forEach(function(day,d){ settings.bands.forEach(function(b){ if(!day[b]) return; ["main","side","soup"].forEach(function(role){
+      if(shouldRegen(d,role) && !(locks[d][b] && locks[d][b][role])) day[b][role]=null;
+    }); }); });
+    settings.bands.forEach(function(b){ regenerateBand(b, shouldRegen); }); savePlan(); renderPlan();
+  }
   function rerollBand(band, shouldRegen){ regenerateBand(band, shouldRegen); savePlan(); renderPlan(); if($("#tab-shop").classList.contains("on")) renderShop(); }
   function genAll(){
     var n = dayCount();
